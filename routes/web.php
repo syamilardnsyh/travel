@@ -10,6 +10,10 @@ Route::get('/', function () {
 
 Route::get('/login', fn () => view('auth.login'))->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/register', fn () => view('auth.register'))->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
 Route::get('/welcome', function (){
     return view('welcome');
 });
