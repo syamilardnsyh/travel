@@ -19,279 +19,9 @@
 
     <!-- CDN Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-
-    <style>
-        body { font-family: 'Poppins', sans-serif; }
-
-        .navbar {
-            transition: 0.4s;
-            background: transparent;
-        }
-
-        .navbar.scrolled {
-            background: #000 !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .nav-link:hover {
-            color: orange !important;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
-            background-size: cover;
-            height: 90vh;
-            color: white;
-            display: flex;
-            align-items: center;
-            text-align: center;
-        }
-
-        .tour-card {
-            overflow: hidden;
-            position: relative;
-            transition: 0.3s;
-        }
-
-        .card-detail {
-            position: absolute;
-            bottom: -200px;
-            left: 0;
-            width: 100%;
-            background: white;
-            padding: 15px;
-            transition: 0.4s;
-            min-height: 150px;
-        }
-        .card-img-top {
-            width: 100%;
-            height: 220px;      /* atur tinggi seragam */
-            object-fit: cover;  /* biar tidak gepeng */
-        }
-
-        .tour-card:hover .card-detail {
-            bottom: 0;
-        }
-
-        .tour-card:hover {
-            transform: translateY(-10px);
-        }
-
-        html { scroll-behavior: smooth; }
-
-        .icon-box {
-            font-size: 40px;
-            color: orange;
-        }
-
-        .testimonial {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        
-        section h5 {
-            margin-bottom: 15px;
-        }
-
-        section p {
-            font-size: 14px;
-            color: #ddd;
-        }
-
-        section i {
-            margin-right: 8px;
-            color: orange;
-        }
-
-        .contact-section {
-            background: linear-gradient(to right, #000000, rgb(19, 18, 1));
-            border-top: 2px solid #eee;
-        }
-
-        .map-container iframe {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .contact-section h3 {
-            font-weight: 600;
-        }
-
-        .contact-section::before {
-            content: "";
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: orange;
-            margin-bottom: 20px;
-        }
-        
-        .promo-section {
-            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470') center/cover;
-            position: relative;
-        }
-
-        .promo-section::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            top: 0;
-            left: 0;
-        }
-
-        .promo-section .container-fluid {
-            position: relative;
-            z-index: 2;
-        }
-
-        .carousel-control-next-icon {
-            background-color: rgba(0,0,0,0.5);
-            border-radius: 50%;
-        }
-
-        .swiper {
-            padding: 20px 40px;
-        }
-
-        .swiper-slide {
-            width: 300px;
-        }
-
-        .swiper-slide {
-            transition: 0.3s;
-        }
-
-        .swiper-slide:hover {
-            transform: scale(1.03);
-        }
-
-        /* tombol keluar dari frame */
-        .swiper-button-next {
-            right: -10px;
-        }
-
-        .swiper-button-prev {
-            left: -10px;
-        }
-
-        /* biar lebih elegan */
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: black;
-        }
-
-        .swiper {
-            padding: 40px 0;
-            cursor: default;
-        }
-
-        .swiper-wrapper {
-            align-items: stretch;
-        }
-
-        .swiper {
-            width: 100%;
-            padding: 50px 0;
-        }
-
-        .swiper-wrapper {
-            display: flex;
-        }
-
-        .swiper-slide {
-            width: 300px;
-        }
-
-        .swiper-button-next {
-            right: -30px; /* keluar */
-        }
-
-        .swiper-button-prev {
-            left: -30px; /* keluar */
-        }
-
-        /* biar tetap kelihatan */
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: black;
-            z-index: 10;
-        }
-
-        /* default semua slide */
-        .swiper-slide {
-            transform: scale(0.85);
-            opacity: 0.5;
-            transition: all 0.4s ease;
-        }
-
-        /* slide aktif (tengah) */
-        .swiper-slide-active {
-            transform: scale(1);
-            opacity: 1;
-            filter: blur(0);
-            z-index: 2;
-        }
-
-        /* slide sebelahnya (biar semi fokus) */
-        .swiper-slide-next,
-        .swiper-slide-prev {
-            transform: scale(0.93);
-            opacity: 0.8;
-        }
-        .swiper-button-next,
-        .swiper-button-prev {
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .swiper-button-next {
-            right: -50px;
-        }
-
-        .swiper-button-prev {
-            left: -50px;
-        }
-
-        .swiper-slide {
-            transition: all 0.5s ease;
-        }
-
-        .swiper {
-            cursor: grab;
-        }
-
-        .swiper-slide {
-            cursor: pointer;
-        }
-        .footer-custom {
-            background: #0b2c5a;
-        }
-
-        .footer-custom h5 {
-            margin-bottom: 15px;
-        }
-
-        .footer-custom ul li {
-            margin-bottom: 8px;
-            cursor: pointer;
-        }
-
-        .footer-custom ul li:hover {
-            color: orange;
-        }
-
-        .navbar .nav-link { margin-right: 10px; }
-        .navbar .btn { margin-left: 5px; }
-        .navbar-brand { margin-right: 30px; }
-        .navbar .ms-auto {margin-left: auto !important;}
-        .navbar { padding-left: 20px; padding-right: 20px;}
-        .navbar .input-group {max-width: 220px;}
-    </style>
+    
+     @vite(['resources/css/app.css'])
 </head>
-
 <body>
 
 <!-- Navbar -->
@@ -320,8 +50,8 @@
                     </span>
                 </div>
 
-                <a href="#" class="btn btn-outline-light">Login</a>
-                <a href="#" class="btn btn-warning">Register</a>
+                <a href="/login" class="btn btn-outline-light">Login</a>
+                <a href="/register" class="btn btn-warning">Register</a>
             </div>
         </div>
     </div>
@@ -372,7 +102,7 @@
         <div class="swiper-slide">
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
         
-        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" class="card-img-top">
+        <img src="https://i.pinimg.com/1200x/e2/06/85/e2068566c5245a9eb832e9c82945e166.jpg" class="card-img-top">
 
         <div class="card-body">
             <h5>Bali Tour</h5>
@@ -581,17 +311,18 @@ var swiper = new Swiper(".mySwiper", {
     centeredSlides: true,
     speed: 800,
 
-    // ✅ WAJIB biar bisa drag manual
+    // supaya bisa drag manual
     allowTouchMove: true,
     grabCursor: true,
     simulateTouch: true,
 
-    // ❌ MATIKAN AUTO kalau mau full manual
+    // nonaktif autoplay:false kalo mau geser manual
     autoplay: {
-    delay: 3000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true, // 🔥 INI KUNCINYA
+    delay: 1000,
+        disableOnInteraction: true,
+        pauseOnMouseEnter: true, 
     },
+
     speed: 1000,
     navigation: {
         nextEl: ".swiper-button-next",

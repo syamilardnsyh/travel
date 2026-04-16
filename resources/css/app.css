@@ -1,11 +1,223 @@
-@import 'tailwindcss';
+        body { font-family: 'Poppins', sans-serif; }
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+        .navbar {
+            transition: 0.4s;
+            background: transparent;
+        }
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
+        .navbar.scrolled {
+            background: #000 !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-link:hover {
+            color: orange !important;
+        }
+
+        .hero {
+            /* Gunakan /img/ langsung, bukan public/img/ */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url("img/rajaampat.jpg") center; 
+            background-size: cover;
+            height: 90vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Tambahkan ini agar teks benar-benar di tengah */
+            text-align: center;
+        }
+
+        .tour-card {
+            overflow: hidden;
+            position: relative;
+            transition: 0.3s;
+            background: #ffffff;
+        }
+
+        .card-detail {
+            position: absolute;
+            bottom: -200px;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 15px;
+            transition: 0.4s;
+            min-height: 150px;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 220px;      /* supaya tinggi nya sama */
+            object-fit: cover;  /* biar ga page paket wisata ga gepeng */
+        }
+
+        .tour-card:hover .card-detail {
+            bottom: 0;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        .icon-box {
+            font-size: 40px;
+            color: orange;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        section h5 {
+            margin-bottom: 15px;
+        }
+
+        section p {
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        section i {
+            margin-right: 8px;
+            color: orange;
+        }
+
+        .contact-section {
+            background: linear-gradient(to right, #000000, rgb(19, 18, 1));
+            border-top: 2px solid #eee;
+        }
+
+        .map-container iframe {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .contact-section h3 {
+            font-weight: 600;
+        }
+
+        .contact-section::before {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: orange;
+            margin-bottom: 20px;
+        }
+        
+        .promo-section {
+            background: url('/images/image.jpg') center/cover;
+            position: relative;
+        }
+
+        .promo-section::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            top: 0;
+            left: 0;
+        }
+
+        .promo-section .container-fluid {
+            position: relative;
+            z-index: 2;
+        }
+
+        .carousel-control-next-icon {
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+        }
+
+        /* CONTAINER SWIPER */
+        .swiper {
+            width: 100%;
+            padding: 50px 0;
+            overflow: visible;
+            cursor: default;
+        }
+
+        /* WRAPPER */
+        .swiper-wrapper {
+            display: flex;
+            align-items: stretch;
+        }
+        
+        .swiper-slide {
+            will-change: transform;
+        }
+
+        /* SLIDE */
+        .swiper-slide {
+            width: 300px;
+            transition: all 0.5s ease;
+            transform: scale(0.85);
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        /* HOVER EFFECT */
+        .swiper-slide:hover {
+            transform: scale(0.9);
+        }
+
+        /* SLIDE AKTIF (TENGAH) */
+        .swiper-slide-active {
+            transform: scale(1);
+            opacity: 1;
+            z-index: 2;
+        }
+
+        /* SLIDE SAMPING */
+        .swiper-slide-next,
+        .swiper-slide-prev {
+            transform: scale(0.93);
+            opacity: 0.8;
+        }
+
+        /* NAVIGATION BUTTON */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: rgb(0, 38, 255);
+            z-index: 10;
+            position: center;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* POSISI KELUAR FRAME */
+        .swiper-button-next {
+            right: -50px;
+        }
+
+        .swiper-button-prev {
+            left: -50px;
+        }
+        .footer-custom {
+            background: #0b2c5a;
+        }
+
+        .footer-custom h5 {
+            margin-bottom: 15px;
+        }
+
+        .footer-custom ul li {
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .footer-custom ul li:hover {
+            color: orange;
+        }
+
+        .navbar .nav-link { margin-right: 10px; }
+        .navbar .btn { margin-left: 5px; }
+        .navbar-brand { margin-right: 30px; }
+        .navbar .ms-auto {margin-left: auto !important;}
+        .navbar { padding-left: 20px; padding-right: 20px;}
+        .navbar .input-group {max-width: 220px;}
+        .navbar .input-group input { padding: 5px 10px; }
+        .navbar .input-group .btn { padding: 5px 10px; }
