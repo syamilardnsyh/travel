@@ -17,7 +17,7 @@
         .hero {
             /* Gunakan /img/ langsung, bukan public/img/ */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                        url("img/rajaampat.jpg") center; 
+                        url("https://i.pinimg.com/1200x/4b/8f/1e/4b8f1eea3a2c000826e95d81d4de2f42.jpg") center; 
             background-size: cover;
             height: 90vh;
             color: white;
@@ -78,7 +78,11 @@
         section p {
             font-size: 14px;
             font-weight: bold;
+<<<<<<< HEAD
             color: #0b2c5a;
+=======
+            color: #5118ee;
+>>>>>>> 51e13e808d2c1fc619179c9ef7b23090f2159694
         }
 
         section i {
@@ -109,7 +113,7 @@
         }
         
         .promo-section {
-            background: url('/images/image.jpg') center/cover;
+            background: url('/img/image.jpg') center/cover;
             position: relative;
         }
 
@@ -182,9 +186,8 @@
         /* NAVIGATION BUTTON */
         .swiper-button-next,
         .swiper-button-prev {
-            color: rgb(0, 38, 255);
+            color: rgb(0, 38, 255) ;
             z-index: 10;
-            position: center;
             top: 50%;
             transform: translateY(-50%);
         }
