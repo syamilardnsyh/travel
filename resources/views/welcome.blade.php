@@ -105,7 +105,7 @@
         <img src="https://i.pinimg.com/1200x/e2/06/85/e2068566c5245a9eb832e9c82945e166.jpg" class="card-img-top">
 
         <div class="card-body">
-            <h5>Bali Tour</h5>
+            <h5><b>Bali Tour</b></h5>
             <p>5 Hari 4 Malam</p>
             <p><strong>Rp 1.500.000</strong></p>
         </div>
@@ -124,7 +124,7 @@
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
                 <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1" class="card-img-top">
                 <div class="card-body">
-                    <h5>Lombok Trip</h5>
+                    <h5><b>Lombok Trip</b></h5>
                     <p>3 Hari 2 Malam</p>
                     <p><strong>Rp 1.200.000</strong></p>
                 </div>
@@ -142,7 +142,7 @@
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
                 <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="card-img-top">
                 <div class="card-body">
-                    <h5>Bandung Tour</h5>
+                    <h5><b>Bandung Tour</b></h5>
                     <p>1 Hari</p>
                     <p><strong>Rp 500.000</strong></p>
                 </div>
@@ -160,7 +160,7 @@
                     <div class="card tour-card shadow" onclick="toggleDetail(this)">
                         <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090" class="card-img-top">
                         <div class="card-body">
-                            <h5>Jogja Trip</h5>
+                            <h5><b>Jogja Trip</b></h5>
                             <p>3 Hari 2 Malam</p>
                             <p><strong>Rp 1.000.000</strong></p>
                         </div>
@@ -176,7 +176,7 @@
                     <div class="card tour-card shadow" onclick="toggleDetail(this)">
                         <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090" class="card-img-top">
                         <div class="card-body">
-                            <h5>Jogja Trip</h5>
+                            <h5><b>Jogja Trip</b></h5>
                             <p>3 Hari 2 Malam</p>
                             <p><strong>Rp 1.000.000</strong></p>
                         </div>
