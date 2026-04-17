@@ -37,10 +37,10 @@
             <div class="ms-auto d-flex align-items-center">
 
                 <ul class="navbar-nav me-3">
-                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/welcome">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#paket">Paket</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tentang</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
                 </ul>
 
                 <div class="input-group me-3" style="width: 200px;">
