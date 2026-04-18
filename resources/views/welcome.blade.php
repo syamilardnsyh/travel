@@ -50,8 +50,16 @@
                     </span>
                 </div>
 
+                @auth
+                <span class="text-white me-3">Halo, {{ Auth::user()->name }}!</span>
+                    <a href="/welcome" class="btn btn-success">Dashboard</a>
+                    <a href="/logout" class="btn btn-success">Logout</a>
+                @endauth
+
+                @guest
                 <a href="/login" class="btn btn-outline-light">Login</a>
                 <a href="/register" class="btn btn-warning">Register</a>
+                @endguest
             </div>
         </div>
     </div>
