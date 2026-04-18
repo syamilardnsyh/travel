@@ -99,7 +99,10 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        Already have an account?
+      </p>
+      <p class="mb-0">
+        <a href="/login" class="text-center">Login Here</a>
       </p>
     <!-- /.login-card-body -->
   </div>

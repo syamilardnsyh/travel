@@ -28,10 +28,10 @@ class AuthController extends Controller
             'confirm_password' => 'required|max:50|min:8|same:password',
         ]);
 
-        $request['status'] = "active";
+        $request['status'] = "verify";
         $user = User::create($request->all());
         Auth::login($user);
-        return redirect('/welcome');
+        return redirect('/verify');
     }
 
     public function logout(){
