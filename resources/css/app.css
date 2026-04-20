@@ -1,4 +1,5 @@
         body { font-family: 'Poppins', sans-serif; }
+        body { overflow-x: hidden; }
 
         .navbar {
             transition: 0.4s;
@@ -13,18 +14,75 @@
         .nav-link:hover {
             color: orange !important;
         }
+        
+        .nav-link:hover {
+            color: orange !important;
+        }
+
+        /* ACTIVE MENU */
+        .nav-link.active {
+            color: white !important;
+            font-weight: 600;
+            border-bottom: 2px solid orange;
+        }
+
+        .navbar-brand img {
+            border-radius: 8px
+        }
 
         .hero {
             /* Gunakan /img/ langsung, bukan public/img/ */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
                         url("https://i.pinimg.com/1200x/4b/8f/1e/4b8f1eea3a2c000826e95d81d4de2f42.jpg") center; 
             background-size: cover;
+            padding: 150px 0 100px 0;
+            background-position: center;
             height: 90vh;
-            color: white;
+            color: rgb(255, 255, 255);
             display: flex;
             align-items: center;
             justify-content: center; /* Tambahkan ini agar teks benar-benar di tengah */
             text-align: center;
+        }
+
+       .wa-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            font-size: 30px;
+            z-index: 9999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+            background-color: #1ebe5d;
+            transition: 0.3s;
+        }
+
+        .wa-float {
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tour-card {
@@ -47,7 +105,7 @@
         .card-img-top {
             width: 100%;
             height: 220px;      /* supaya tinggi nya sama */
-            object-fit: cover;  /* biar ga page paket wisata ga gepeng */
+            object-fit: cover;  /* biar page paket wisata ga gepeng */
         }
 
         .tour-card:hover .card-detail {
@@ -59,6 +117,30 @@
         }
 
         html { scroll-behavior: smooth; }
+
+        .bus-card {
+            background: #2f2f8f;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid rgb(255, 238, 0);
+            transition: 0.3s;
+        }
+
+        .bus-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .bus-img {
+            width: 100%;
+            height: 140px;
+            object-fit: contain;
+        }
+
+        .bus-detail p {
+            margin: 3px 0;
+            font-size: 14px;
+        }
 
         .icon-box {
             font-size: 40px;
@@ -78,7 +160,7 @@
         section p {
             font-size: 14px;
             font-weight: bold;
-            color: #5118ee;
+            color: #f0c346;
         }
 
         section i {
@@ -182,7 +264,7 @@
         /* NAVIGATION BUTTON */
         .swiper-button-next,
         .swiper-button-prev {
-            color: rgb(0, 38, 255) ;
+            color: rgb(255, 238, 0) ;
             z-index: 10;
             top: 50%;
             transform: translateY(-50%);
@@ -190,12 +272,13 @@
 
         /* POSISI KELUAR FRAME */
         .swiper-button-next {
-            right: -50px;
+            right: -25px;
         }
 
         .swiper-button-prev {
-            left: -50px;
+            left: -25px;
         }
+      
         .footer-custom {
             background: #0b2c5a;
         }

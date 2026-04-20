@@ -8,11 +8,11 @@
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Icon -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -27,6 +27,7 @@
 <!-- Navbar -->
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid px-5">
+        <img src="{{ asset('admin/dist/img/logo.png') }}" width="60" class="me-2">
         <a class="navbar-brand fw-bold">Erlangga Tour & Travel</a>
 
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -39,7 +40,7 @@
                 <ul class="navbar-nav me-3">
                     <li class="nav-item"><a class="nav-link active" href="/welcome">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#paket">Paket</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tentang">Tentang</a></li>
                     <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
                 </ul>
 
@@ -77,7 +78,7 @@
 <!-- Keunggulan -->
 <section class="py-5 text-center">
     <div class="container">
-        <h2 class="mb-4">Kenapa Pilih Kami?</h2>
+        <h2 class="mb-4 fw-bold">Kenapa Pilih Kami?</h2>
         <div class="row">
             <div class="col-md-4" data-aos="zoom-in">
                 <div class="icon-box"><i class="bi bi-globe"></i></div>
@@ -101,7 +102,7 @@
 <!-- Paket -->
 <section id="paket" class="py-5 bg-light">
     <div class="container-fluid px-5 position-relative">
-        <h2 class="text-center mb-4">Paket Wisata Populer</h2>
+        <h2 class="text-center mb-4 fw-bold">Paket Wisata Populer</h2>
 
         <!-- SWIPER -->
       <div class="swiper mySwiper">
@@ -109,21 +110,23 @@
 
         <div class="swiper-slide">
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
-        
-        <img src="https://i.pinimg.com/1200x/e2/06/85/e2068566c5245a9eb832e9c82945e166.jpg" class="card-img-top">
-
-        <div class="card-body">
-            <h5><b>Bali Tour</b></h5>
-            <p>5 Hari 4 Malam</p>
-            <p><strong>Rp 1.500.000</strong></p>
-        </div>
-
-        <div class="card-detail">
-            <p>✔ Hotel Bintang 3</p>
-            <p>✔ Transportasi</p>
-            <p>✔ Tour Guide</p>
-            <button class="btn btn-warning w-100">Booking</button>
-        </div>
+                 <img src="https://i.pinimg.com/1200x/e2/06/85/e2068566c5245a9eb832e9c82945e166.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <h5><b>Bali Tour</b></h5>
+                        <p>5 Hari 4 Malam</p>
+                        <p><strong>Rp 1.500.000</strong></p>
+                    </div>
+                    <div class="card-detail">
+                        <p>✔ Hotel Bintang 3</p>
+                        <p>✔ Transportasi</p>
+                        <p>✔ Tour Guide</p>
+                        @auth
+                        <button onclick="bookingWA('Bali Tour','Rp 1.500.000')" class="btn btn-warning w-100">Booking </button>    
+                        @endauth
+                        @guest
+                        <a href="/login" class="btn btn-warning w-100">Booking</a>
+                        @endguest
+                    </div>
 
             </div>
         </div>
@@ -140,7 +143,12 @@
                     <p>✔ Hotel Bintang 3</p>
                     <p>✔ Transportasi</p>
                     <p>✔ Tour Guide</p>
-                    <button class="btn btn-warning w-100">Booking</button>
+                    @auth
+                    <button onclick="bookingWA('Lombok Trip','Rp 1.200.000')" class="btn btn-warning w-100">Booking </button>    
+                    @endauth
+                    @guest
+                    <a href="/login" class="btn btn-warning w-100">Booking</a>    
+                    @endguest                   
                 </div>
 
             </div>
@@ -158,7 +166,12 @@
                     <p>✔ Hotel Bintang 3</p>
                     <p>✔ Transportasi</p>
                     <p>✔ Tour Guide</p>
-                    <button class="btn btn-warning w-100">Booking</button>
+                    @auth
+                    <button onclick="bookingWA('Bandung Tour','Rp 500.000')" class="btn btn-warning w-100">Booking </button>    
+                    @endauth
+                    @guest
+                    <a href="/login" class="btn btn-warning w-100">Booking</a>
+                    @endguest
                 </div>
 
             </div>
@@ -168,15 +181,20 @@
                     <div class="card tour-card shadow" onclick="toggleDetail(this)">
                         <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090" class="card-img-top">
                         <div class="card-body">
-                            <h5><b>Jogja Trip</b></h5>
-                            <p>3 Hari 2 Malam</p>
-                            <p><strong>Rp 1.000.000</strong></p>
+                            <h5><b>Ciwidey</b></h5>
+                            <p>1 Hari 2 Malam</p>
+                            <p><strong>Rp 700.000</strong></p>
                         </div>
                          <div class="card-detail">
                             <p>✔ Hotel Bintang 3</p>
                             <p>✔ Transportasi</p>
                             <p>✔ Tour Guide</p>
-                            <button class="btn btn-warning w-100">Booking</button>
+                            @auth
+                            <button onclick="bookingWA('Ciwidey','Rp 700.000')" class="btn btn-warning w-100">Booking </button>    
+                            @endauth
+                            @guest
+                            <a href="/login" class="btn btn-warning w-100">Booking</a>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -192,59 +210,143 @@
                             <p>✔ Hotel Bintang 3</p>
                             <p>✔ Transportasi</p>
                             <p>✔ Tour Guide</p>
-                            <button class="btn btn-warning w-100">Booking</button>
+                            @auth
+                            <button onclick="bookingWA('Jogja Trip','Rp 1.000.000')" class="btn btn-warning w-100">Booking </button>    
+                            @endauth
+                            @guest
+                            <a href="/login" class="btn btn-warning w-100">Booking</a>
+                            @endguest
                         </div>
                     </div>
                 </div>
             </div>
 
-            <section class="py-5">
-    <div class="container-fluid px-5">
-        <h2 class="text-center mb-4">Pilihan Transportasi Bus</h2>
-
-        <div class="row">
-
-            <div class="col-md-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5>Bus Ekonomi</h5>
-                        <p>AC, kapasitas 40 orang</p>
-                        <p><strong>Rp 2.000.000 / hari</strong></p>
-                        <button class="btn btn-outline-primary w-100">Pilih</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5>Bus Medium</h5>
-                        <p>AC + Reclining Seat</p>
-                        <p><strong>Rp 3.500.000 / hari</strong></p>
-                        <button class="btn btn-outline-primary w-100">Pilih</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5>Bus Luxury</h5>
-                        <p>WiFi, TV, Recliner Seat</p>
-                        <p><strong>Rp 5.000.000 / hari</strong></p>
-                        <button class="btn btn-outline-primary w-100">Pilih</button>
-                    </div>
-                </div>
-            </div>
-
+             <!-- tombol -->
+            <div class="swiper-button-next"></div>
+             <div class="swiper-button-prev"></div>
         </div>
     </div>
 </section>
 
-    <!-- tombol -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-</div>
+ <section class="py-5 bg-light">
+    <div class="container-fluid px-5">
+        <h2 class="text-center mb-5 fw-bold">Pilihan Transportasi Bus</h2>
+
+        <div class="row g-4">
+
+            <!-- BUS 1 -->
+            <div class="col-md-3">
+                <div class="bus-card text-center">
+                    <img src="{{ asset('admin/dist/img/bus1.png') }}" class="bus-img">
+
+                    <h5 class="mt-3 fw-bold">Hiace Commuter</h5>
+                    <p>Kapasitas 10 - 14 Orang</p>
+
+                    <div class="bus-detail">
+                        <p>✔ AC Full</p>
+                        <p>✔ Reclining Seat</p>
+                        <p>✔ Audio + Karaoke</p>
+                        <p>✔ Driver Profesional</p>
+                        <p>✔ BBM Include</p>
+                    </div>
+
+                    <div class="mt-3">
+                        <small>Dalam Kota:</small>
+                        <h6 class="fw-bold">Rp800.000</h6>
+
+                        <small>Luar Kota:</small>
+                        <h6 class="fw-bold">Rp1.200.000</h6>
+                    </div>
+
+                    <button class="btn btn-danger mt-3 w-100">Booking Sekarang</button>
+                </div>
+            </div>
+
+            <!-- BUS 2 -->
+            <div class="col-md-3">
+                <div class="bus-card text-center">
+                    <img src="{{ asset('admin/dist/img/bus2.png') }}" class="bus-img">
+
+                    <h5 class="mt-3 fw-bold">Bus Medium</h5>
+                    <p>Kapasitas 25 - 30 Orang</p>
+
+                    <div class="bus-detail">
+                        <p>✔ AC</p>
+                        <p>✔ Reclining Seat</p>
+                        <p>✔ TV + Audio</p>
+                        <p>✔ Charger USB</p>
+                        <p>✔ Driver + BBM</p>
+                    </div>
+
+                    <div class="mt-3">
+                        <small>Dalam Kota:</small>
+                        <h6 class="fw-bold">Rp2.500.000</h6>
+
+                        <small>Luar Kota:</small>
+                        <h6 class="fw-bold">Rp3.500.000</h6>
+                    </div>
+
+                    <button class="btn btn-danger mt-3 w-100">Booking Sekarang</button>
+                </div>
+            </div>
+
+            <!-- BUS 3 -->
+            <div class="col-md-3">
+                <div class="bus-card text-center">
+                    <img src="{{ asset('admin/dist/img/bus3.png') }}" class="bus-img">
+
+                    <h5 class="mt-3 fw-bold">Big Bus Pariwisata</h5>
+                    <p>Kapasitas 45 - 50 Orang</p>
+
+                    <div class="bus-detail">
+                        <p>✔ AC Full</p>
+                        <p>✔ Reclining Seat</p>
+                        <p>✔ TV + Karaoke</p>
+                        <p>✔ Toilet (opsional)</p>
+                        <p>✔ Driver + BBM</p>
+                    </div>
+
+                    <div class="mt-3">
+                        <small>Dalam Kota:</small>
+                        <h6 class="fw-bold">Rp3.500.000</h6>
+
+                        <small>Luar Kota:</small>
+                        <h6 class="fw-bold">Rp5.000.000</h6>
+                    </div>
+
+                    <button class="btn btn-danger mt-3 w-100">Booking Sekarang</button>
+                </div>
+            </div>
+
+            <!-- BUS 4 -->
+            <div class="col-md-3">
+                <div class="bus-card text-center">
+                    <img src="{{ asset('admin/dist/img/bus4.png') }}" class="bus-img">
+
+                    <h5 class="mt-3 fw-bold">Luxury Bus</h5>
+                    <p>Kapasitas 40 - 55 Orang</p>
+
+                    <div class="bus-detail">
+                        <p>✔ AC Premium</p>
+                        <p>✔ Sleeper Seat</p>
+                        <p>✔ WiFi + TV</p>
+                        <p>✔ Snack & Air Mineral</p>
+                        <p>✔ Driver + BBM</p>
+                    </div>
+
+                    <div class="mt-3">
+                        <small>Dalam Kota:</small>
+                        <h6 class="fw-bold">Rp5.000.000</h6>
+
+                        <small>Luar Kota:</small>
+                        <h6 class="fw-bold">Rp7.000.000</h6>
+                    </div>
+
+                    <button class="btn btn-danger mt-3 w-100">Booking Sekarang</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
@@ -297,14 +399,17 @@
             </div>
 
         </div>
-
+            
         <hr class="mt-4">
-
         <div class="text-center">
-            <small>&copy; 2026 Erlangga Tour & Travel</small>
+            <small>&copy; 2026 PT. Erlangga Tour & Travel</small>
         </div>
     </div>
 </footer>
+
+<a href="https://wa.me/6281234567890" target="_blank" class="wa-float">
+    <i class="bi bi-whatsapp"></i>
+</a>
 
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -312,8 +417,26 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
+function bookingWA(namaPaket, harga) {
+    let nomor = "6285882418210"; // GANTI dengan nomor WA kamu (pakai 62)
+
+    let pesan = `Halo Admin Erlangga Tour & Travel,
+Saya tertarik dengan paket:
+
+Paket: ${namaPaket}
+Harga: ${harga}
+
+Mohon info lebih lanjut ya`;
+
+    let url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+
+    window.open(url, '_blank');
+}
+</script>
+
+<script>
 var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
+    slidesPerView: 2.5,
     spaceBetween: 20,
     loop: true,
     centeredSlides: true,
@@ -321,18 +444,17 @@ var swiper = new Swiper(".mySwiper", {
 
     // supaya bisa drag manual
     allowTouchMove: true,
-    grabCursor: true,
+    grabCursor: false,
     simulateTouch: true,
 
     // nonaktif autoplay:false kalo mau geser manual
     autoplay: {
-    delay: 1000,
-        disableOnInteraction: true,
+        delay: 1000,
+        disableOnInteraction: false,
         pauseOnMouseEnter: true, 
     },
 
-    speed: 1000,
-    navigation: {
+        navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
