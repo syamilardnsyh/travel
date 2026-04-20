@@ -17,7 +17,6 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#">Login Travel</</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -27,7 +26,7 @@
     <div class="alert alert-danger">{{session('failed')}}</div>
     @endif
 
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Erlangga Tour & Travel</p>
 
       <form action="/login" method="post">
         @csrf
