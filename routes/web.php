@@ -32,3 +32,6 @@ Route::get('/welcome', function (){
     return view('welcome');
 });
 Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/tentang', function () {
+    return view('tentang');
+});

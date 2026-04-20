@@ -1,0 +1,156 @@
+body { font-family: 'Poppins', sans-serif; }
+
+/* NAVBAR */
+.navbar {
+    transition: 0.4s;
+    background: transparent;
+}
+
+.navbar.scrolled {
+    background: #000 !important;
+}
+
+.nav-link {
+    color: #ccc !important;
+}
+
+.nav-link:hover {
+    color: orange !important;
+}
+
+/* ACTIVE MENU */
+.nav-link.active {
+    color: white !important;
+    font-weight: 600;
+    border-bottom: 2px solid orange;
+}
+
+/* NAVBAR CONSISTENT */
+.navbar {
+    padding: 10px 40px; 
+}
+
+.navbar-brand {
+    font-size: 20px;
+    margin-right: 30px;
+}
+
+.navbar .nav-link {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.navbar .btn {
+    margin-left: 5px;
+    padding: 6px 14px;
+    font-size: 14px;
+}
+
+/* supaya kanan benar-benar mepet rapi */
+.navbar .ms-auto {
+    margin-left: auto !important;
+}
+
+.navbar {
+    backdrop-filter: blur(10px);
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://i.pinimg.com/1200x/4b/8f/1e/4b8f1eea3a2c000826e95d81d4de2f42.jpg');
+    background-size: cover;
+    padding: 150px 0 100px 0;
+    color: white;
+}
+
+.logo-hero {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.logo-hero {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* LOGO DI KANAN */
+.logo-kanan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ukuran logo */
+.logo-kanan img {
+    width: 60px; /* bisa kamu ubah jadi 60px kalau mau lebih besar */
+    margin-top: 12px;
+}
+
+/* biar turun ke bawah tombol */
+@media (min-width: 768px) {
+    .logo-kanan {
+        margin-left: 800px;
+        transform: translateY(10px);
+    }
+}
+
+/* SECTION */
+.section {
+    padding: 80px 0;
+}
+
+.section {
+    background: #fff;
+    position: relative;
+    z-index: 2;
+    margin-top: -60px; /* naik sedikit biar nyatu */
+    border-radius: 20px 20px 0 0;
+
+    /* efek menyatu */
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.08);
+}
+
+.section-title {
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
+/* CARD MODERN */
+.card-modern {
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card-modern:hover {
+    transform: translateY(-10px);
+}
+
+/* ICON */
+.icon {
+    font-size: 40px;
+    color: orange;
+    margin-bottom: 15px;
+}
+
+/* STATS */
+.stats h2 {
+    font-weight: bold;
+}
+
+/* TEAM */
+.team img {
+    border-radius: 50%;
+}
+
+/* CTA */
+.cta {
+    background: linear-gradient(45deg, #0b2c5a, #1e4fa3);
+    padding: 50px;
+    border-radius: 20px;
+    color: white;
+}
