@@ -19,11 +19,24 @@
             color: orange !important;
         }
 
-        /* ACTIVE MENU */
-        .nav-link.active {
-            color: white !important;
-            font-weight: 600;
-            border-bottom: 2px solid orange;
+        /* container nav */
+        #navMenuList {
+            position: relative;
+        }
+
+        /* garis aktif */
+        .nav-indicator {
+            position: absolute;
+            bottom: 5px;
+            height: 3px;
+            width: 0;
+            background: orange;
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            border-radius: 10px;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
 
         .navbar-brand img {
@@ -167,6 +180,7 @@
             margin-right: 8px;
             color: orange;
         }
+        
 
         .contact-section {
             background: linear-gradient(to right, #000000, rgb(19, 18, 1));

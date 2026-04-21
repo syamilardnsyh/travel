@@ -41,16 +41,25 @@
                     <li class="nav-item"><a class="nav-link active" href="/tentang">Tentang</a></li>
                     <li class="nav-item"><a class="nav-link" href="/welcome#kontak">Kontak</a></li>
                 </ul>
+                    <span class="nav-indicator"></span>
 
-                <a href="/login" class="btn btn-outline-light me-2">Login</a>
+                <@auth
+                <span class="text-white me-3">Halo, {{ Auth::user()->name }}!</span>
+                    <a href="/welcome" class="btn btn-success">Dashboard</a>
+                    <a href="/logout" class="btn btn-success">Logout</a>
+                @endauth
+
+                @guest
+                <a href="/login" class="btn btn-outline-light">Login</a>
                 <a href="/register" class="btn btn-warning">Register</a>
+                @endguest
             </div>
         </div>
     </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section id="home" class="hero">
     <div class="container">
         <div class="row align-items-center">
 
@@ -135,8 +144,8 @@
         <!-- CEO -->
         <div class="row justify-content-center mb-5">
             <div class="col-md-3">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" width="130" class="rounded-circle">
-                <h5 class="mt-3">Andi Pratama</h5>
+                <img src="{{ asset('admin/dist/img/Edi-Klimiz.jpeg') }}" width="130" class="rounded-circle">
+                <h5 class="mt-3">Edi Klimiz</h5>
                 <p class="text-muted">CEO</p>
             </div>
         </div>
@@ -144,30 +153,30 @@
         <!-- MANAGER -->
         <div class="row justify-content-center mb-5">
             <div class="col-md-3">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" width="130" class="rounded-circle">
-                <h5 class="mt-3">Siti Rahma</h5>
-                <p class="text-muted">Manager Operasional</p>
+                <img src="{{ asset('admin/dist/img/Fauzi.jpeg') }}" width="120" class="rounded-circle">
+                <h6 class="mt-3">Fauzi</h6>
+                <p class="text-muted">Tour Leader</p>
             </div>
         </div>
 
         <!-- STAFF (3 ORANG) -->
         <div class="row justify-content-center">
             <div class="col-md-3">
-                <img src="https://randomuser.me/api/portraits/men/65.jpg" width="120" class="rounded-circle">
-                <h6 class="mt-3">Budi Santoso</h6>
-                <p class="text-muted">Tour Guide</p>
+                <img src="{{ asset('admin/dist/img/Erlangga.jpeg') }}" width="120" class="rounded-circle">
+                <h6 class="mt-3">Erlangga</h6>
+                <p class="text-muted">Dokumentasi 1</p>
             </div>
 
             <div class="col-md-3">
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" width="120" class="rounded-circle">
-                <h6 class="mt-3">Dewi Lestari</h6>
-                <p class="text-muted">Customer Service</p>
+                <img src="{{ asset('admin/dist/img/Bashari.jpeg') }}" width="120" class="rounded-circle">
+                <h6 class="mt-3">Bashari</h6>
+                <p class="text-muted">Dokumentasi 2</p>
             </div>
 
             <div class="col-md-3">
-                <img src="https://randomuser.me/api/portraits/men/75.jpg" width="120" class="rounded-circle">
-                <h6 class="mt-3">Rizky Saputra</h6>
-                <p class="text-muted">Marketing</p>
+                <img src="{{ asset('admin/dist/img/Ajililo.jpeg') }}" width="120" class="rounded-circle">
+                <h6 class="mt-3">Ajililo</h6>
+                <p class="text-muted">Dokumentasi 3</p>
             </div>
         </div>
 
@@ -193,6 +202,55 @@
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+const links = document.querySelectorAll("#navMenuList .nav-link");
+const indicator = document.querySelector(".nav-indicator");
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 100;
+        const height = sec.offsetHeight;
+
+        if (top >= offset && top < offset + height) {
+            current = sec.getAttribute("id");
+        }
+    });
+
+    links.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+            moveIndicator(link);
+        }
+    });
+});
+
+function moveIndicator(el) {
+    indicator.style.width = el.offsetWidth + "px";
+    indicator.style.left = el.offsetLeft + "px";
+}
+
+// saat klik
+links.forEach(link => {
+    link.addEventListener("click", function () {
+        links.forEach(l => l.classList.remove("active"));
+        this.classList.add("active");
+
+        moveIndicator(this);
+    });
+});
+
+// set default (home)
+window.addEventListener("load", () => {
+    const active = document.querySelector(".nav-link.active");
+    if (active) moveIndicator(active);
+});
+</script>
 
 <script>
 AOS.init({

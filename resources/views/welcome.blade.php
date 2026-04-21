@@ -37,11 +37,12 @@
         <div class="collapse navbar-collapse" id="navMenu">
             <div class="ms-auto d-flex align-items-center">
 
-                <ul class="navbar-nav me-3">
+                <ul id="navMenuList" class="navbar-nav me-3 position-relative">
                     <li class="nav-item"><a class="nav-link active" href="/welcome">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#paket">Paket</a></li>
                     <li class="nav-item"><a class="nav-link" href="/tentang">Tentang</a></li>
                     <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+                    <span class="nav-indicator"></span>                  
                 </ul>
 
                 <div class="input-group me-3" style="width: 200px;">
@@ -67,7 +68,7 @@
 </nav>
 
 <!-- Hero -->
-<section class="hero">
+<section id="home" class="hero">
     <div class="container">
         <h1 class="display-4 fw-bold" data-aos="fade-up">Jelajahi Dunia Bersama Kami</h1>
         <p data-aos="fade-up" data-aos-delay="200">Liburan mudah, cepat, dan terpercaya</p>
@@ -110,7 +111,7 @@
 
         <div class="swiper-slide">
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                 <img src="https://i.pinimg.com/1200x/e2/06/85/e2068566c5245a9eb832e9c82945e166.jpg" class="card-img-top">
+                 <img src="{{ asset('admin/dist/img/bali.jpg') }}" class="card-img-top">
                     <div class="card-body">
                         <h5><b>Bali Tour</b></h5>
                         <p>5 Hari 4 Malam</p>
@@ -133,9 +134,9 @@
 
         <div class="swiper-slide">
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1" class="card-img-top">
+                <img src="{{ asset('admin/dist/img/bromo.jfif') }}" class="card-img-top">
                 <div class="card-body">
-                    <h5><b>Lombok Trip</b></h5>
+                    <h5><b>Bromo Trip</b></h5>
                     <p>3 Hari 2 Malam</p>
                     <p><strong>Rp 1.200.000</strong></p>
                 </div>
@@ -144,7 +145,7 @@
                     <p>✔ Transportasi</p>
                     <p>✔ Tour Guide</p>
                     @auth
-                    <button onclick="bookingWA('Lombok Trip','Rp 1.200.000')" class="btn btn-warning w-100">Booking </button>    
+                    <button onclick="bookingWA('Bromo Trip','Rp 1.200.000')" class="btn btn-warning w-100">Booking </button>    
                     @endauth
                     @guest
                     <a href="/login" class="btn btn-warning w-100">Booking</a>    
@@ -156,7 +157,7 @@
 
         <div class="swiper-slide">
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="card-img-top">
+                <img src="{{ asset('admin/dist/img/bandung.jfif') }}" class="card-img-top">
                 <div class="card-body">
                     <h5><b>Bandung Tour</b></h5>
                     <p>1 Hari</p>
@@ -179,9 +180,9 @@
 
         <div class="swiper-slide">
                     <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                        <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090" class="card-img-top">
+                        <img src="{{ asset('admin/dist/img/bogor.jfif') }}" class="card-img-top">
                         <div class="card-body">
-                            <h5><b>Ciwidey</b></h5>
+                            <h5><b>Bogor</b></h5>
                             <p>1 Hari 2 Malam</p>
                             <p><strong>Rp 700.000</strong></p>
                         </div>
@@ -190,7 +191,7 @@
                             <p>✔ Transportasi</p>
                             <p>✔ Tour Guide</p>
                             @auth
-                            <button onclick="bookingWA('Ciwidey','Rp 700.000')" class="btn btn-warning w-100">Booking </button>    
+                            <button onclick="bookingWA('Bogor','Rp 700.000')" class="btn btn-warning w-100">Booking </button>    
                             @endauth
                             @guest
                             <a href="/login" class="btn btn-warning w-100">Booking</a>
@@ -200,7 +201,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                        <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090" class="card-img-top">
+                        <img src="{{ asset('admin/dist/img/prambanan.jfif') }}" class="card-img-top">
                         <div class="card-body">
                             <h5><b>Jogja Trip</b></h5>
                             <p>3 Hari 2 Malam</p>
@@ -467,6 +468,63 @@ var swiper = new Swiper(".mySwiper", {
 </script>
 <script>
 const swiperEl = document.querySelector(".mySwiper");
+const links = document.querySelectorAll("#navMenuList .nav-link");
+const indicator = document.querySelector(".nav-indicator");
+
+let lastActive = null;
+
+function moveIndicator(el) {
+    const parent = el.parentElement.parentElement;
+    const rect = el.getBoundingClientRect();
+    const parentRect = parent.getBoundingClientRect();
+
+    indicator.style.width = rect.width + "px";
+    indicator.style.left = (rect.left - parentRect.left) + "px";
+}
+
+// CLICK NAV
+links.forEach(link => {
+    link.addEventListener("click", function () {
+        links.forEach(l => l.classList.remove("active"));
+        this.classList.add("active");
+
+        moveIndicator(this);
+    });
+});
+
+// SCROLL DETECT
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+    let currentSection = null;
+
+    sections.forEach(sec => {
+        const offset = sec.offsetTop - 150;
+        const height = sec.offsetHeight;
+
+        if (window.scrollY >= offset && window.scrollY < offset + height) {
+            currentSection = sec.getAttribute("id");
+        }
+    });
+
+    if (currentSection) {
+        const targetLink = document.querySelector(`.nav-link[href="#${currentSection}"]`);
+
+        if (targetLink && targetLink !== lastActive) {
+            links.forEach(l => l.classList.remove("active"));
+            targetLink.classList.add("active");
+
+            moveIndicator(targetLink);
+            lastActive = targetLink;
+        }
+    }
+});
+
+// DEFAULT POSISI AWAL
+window.addEventListener("load", () => {
+    const active = document.querySelector(".nav-link.active");
+    if (active) moveIndicator(active);
+});
 
 swiperEl.addEventListener("mouseenter", () => {
     swiper.autoplay.stop();
