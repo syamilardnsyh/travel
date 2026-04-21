@@ -15,6 +15,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', fn () => view('auth.register'))->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::get('/auth-google-redirect', [AuthController::class, 'google_redirect']);
+Route::get('/auth-google-callback', [AuthController::class, 'google_callback']);
+
 Route::group(['middleware' => ['auth', 'check_role:costumer']], function(){
     Route::get('/verify', [VerificationController::class, 'index']);
     Route::post('verify', [VerificationController::class, 'store']);

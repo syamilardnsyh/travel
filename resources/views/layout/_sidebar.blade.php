@@ -38,7 +38,7 @@
             <a href="/dashboard" class="nav-link {{(request()->is('dashboard')) ? 'active' : ''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Dashboard 
               </p>
             </a>
           </li>
