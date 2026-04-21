@@ -203,11 +203,6 @@
             background: orange;
             margin-bottom: 20px;
         }
-        
-        .promo-section {
-            background: url('/img/image.jpg') center/cover;
-            position: relative;
-        }
 
         .promo-section::before {
             content: "";

@@ -118,7 +118,6 @@
     }
 
     .section {
-        background: #fff;
         position: relative;
         z-index: 2;
         margin-top: -60px; /* naik sedikit biar nyatu */
@@ -161,17 +160,7 @@
         height: 140px;
         object-fit: cover;
         border-radius: 50%;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-    }
-
-    /* SECTION BACKGROUND */
-    .team-section {
-        padding: 80px 0;
-        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
-        background-size: cover;
-        background-position: center;
-        color: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
     }
 
     /* CARD */
@@ -201,7 +190,7 @@
         background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470') no-repeat center center;
         background-size: cover;
     }
-
+    
     /* OVERLAY BIAR GELAP (BIAR TEKS KELIHATAN) */
     .team-section .overlay {
         position: absolute;
@@ -227,6 +216,15 @@
     /* JUDUL */
     .section-title {
         font-weight: 700;
+        color: white;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .section-subtitle {
+        font-size: 16px;
+        color: #ffffff !important;
+        margin-bottom: 30px;
+        font-family: 'Times New Roman', Times, serif;
     }
 
     /* OPTIONAL: biar lebih hidup */
@@ -235,14 +233,9 @@
         transition: 0.3s;
     }
 
-    /* TITLE */
-    .section-title {
-        font-weight: 700;
-    }
-
     /* CTA */
     .cta {
-        background: linear-gradient(45deg, #0b2c5a, #1e4fa3);
+        background: linear-gradient(45deg, #d8b65a, #e6a429);
         padding: 50px;
         border-radius: 20px;
         color: white;

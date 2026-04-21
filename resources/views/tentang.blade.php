@@ -136,7 +136,9 @@
     </div>
 </section>
 
-<!-- TEAM -->
+<!-- TEAM --> 
+ <section class="section-title team-section">
+    <div class="overlay"></div>
 <section class="section team text-center">
     <div class="container">
         <h2 class="section-title">Tim Profesional</h2>
@@ -146,16 +148,16 @@
             <div class="col-md-3">
                 <img src="{{ asset('admin/dist/img/Edi-Klimiz.jpeg') }}" width="130" class="rounded-circle">
                 <h5 class="mt-3">Edi Klimiz</h5>
-                <p class="text-muted">CEO</p>
+                <p class="section-subtitle text-murted">CEO</p>
             </div>
         </div>
 
-        <!-- MANAGER -->
+        <!--TL -->
         <div class="row justify-content-center mb-5">
             <div class="col-md-3">
                 <img src="{{ asset('admin/dist/img/Fauzi.jpeg') }}" width="120" class="rounded-circle">
                 <h6 class="mt-3">Fauzi</h6>
-                <p class="text-muted">Tour Leader</p>
+                <p class="section-subtitle">Tour Leader</p>
             </div>
         </div>
 
@@ -164,23 +166,25 @@
             <div class="col-md-3">
                 <img src="{{ asset('admin/dist/img/Erlangga.jpeg') }}" width="120" class="rounded-circle">
                 <h6 class="mt-3">Erlangga</h6>
-                <p class="text-muted">Dokumentasi 1</p>
+                <p class="section-subtitle">Dokumentasi 1</p>
             </div>
 
             <div class="col-md-3">
                 <img src="{{ asset('admin/dist/img/Bashari.jpeg') }}" width="120" class="rounded-circle">
                 <h6 class="mt-3">Bashari</h6>
-                <p class="text-muted">Dokumentasi 2</p>
+                <p class="section-subtitle">Dokumentasi 2</p>
             </div>
 
             <div class="col-md-3">
                 <img src="{{ asset('admin/dist/img/Ajililo.jpeg') }}" width="120" class="rounded-circle">
                 <h6 class="mt-3">Ajililo</h6>
-                <p class="text-muted">Dokumentasi 3</p>
+                <p class="section-subtitle">Dokumentasi 3</p>
             </div>
         </div>
 
     </div>
+</section>
+</section>
 </section>
 
 <!-- CTA -->
