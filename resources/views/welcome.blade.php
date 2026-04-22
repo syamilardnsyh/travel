@@ -258,8 +258,13 @@
                         <small>Luar Kota:</small>
                         <h6 class="fw-bold">Rp1.200.000</h6>
                     </div>
-
-                    <button class="btn btn-danger mt-3 w-100">Booking Sekarang</button>
+                    @auth
+                    <button onclick="bookingWA('Hiace Commuter','Dalam Kota: Rp 800.000 | Luar Kota: Rp 1.200.000')" class="btn btn-danger mt-3 w-100">Booking Sekarang</button>    
+                    @endauth
+                    @guest
+                    <a href="/login" class="btn btn-warning w-100">Booking</a>
+                    @endguest
+                    
                 </div>
             </div>
 
@@ -286,8 +291,12 @@
                         <small>Luar Kota:</small>
                         <h6 class="fw-bold">Rp3.500.000</h6>
                     </div>
-
-                    <button class="btn btn-danger mt-3 w-100">Booking Sekarang</button>
+                    @auth
+                    <button onclick="bookingWA('Bus Medium','Dalam Kota: Rp 2.500.000 | Luar Kota: Rp 3.500.000')" class="btn btn-danger mt-3 w-100">Booking Sekarang</button>    
+                    @endauth
+                    @guest
+                    <a href="/login" class="btn btn-warning w-100">Booking</a>
+                    @endguest
                 </div>
             </div>
 
@@ -314,8 +323,12 @@
                         <small>Luar Kota:</small>
                         <h6 class="fw-bold">Rp5.000.000</h6>
                     </div>
-
-                    <button class="btn btn-danger mt-3 w-100">Booking Sekarang</button>
+                    @auth
+                    <button onclick="bookingWA('Big Bus Pariwisata','Dalam Kota: Rp 3.500.000 | Luar Kota: Rp 5.000.000')" class="btn btn-danger mt-3 w-100">Booking Sekarang</button>    
+                    @endauth
+                    @guest
+                    <a href="/login" class="btn btn-warning w-100">Booking</a>
+                    @endguest
                 </div>
             </div>
 
@@ -342,11 +355,73 @@
                         <small>Luar Kota:</small>
                         <h6 class="fw-bold">Rp7.000.000</h6>
                     </div>
-
-                    <button class="btn btn-danger mt-3 w-100">Booking Sekarang</button>
+                    @auth
+                    <button onclick="bookingWA('Luxury Bus','Dalam Kota: Rp 5.000.000 | Luar Kota: Rp 7.000.000')" class="btn btn-danger mt-3 w-100">Booking Sekarang</button>    
+                    @endauth
+                    @guest
+                    <a href="/login" class="btn btn-warning w-100">Booking</a>
+                    @endguest
                 </div>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="py-5 bg-light">
+    <div class="container-fluid px-5">
+        <h2 class="text-center fw-bold mb-5">Apa Kata Pelanggan Kami?</h2>
+
+        <div class="testimonial-wrapper">
+        <div class="swiper testimonialSwiper">
+            <div class="swiper-wrapper">
+
+                <!-- ITEM 1 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="testimonial-img">
+                        <h5>Rizky Pratama</h5>
+                        <small>Jakarta</small>
+                        <div class="stars">★★★★★</div>
+                        <p>"Pelayanan sangat memuaskan, perjalanan jadi lebih nyaman dan teratur!"</p>
+                    </div>
+                </div>
+
+                <!-- ITEM 2 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="testimonial-img">
+                        <h5>Siti Rahma</h5>
+                        <small>Bandung</small>
+                        <div class="stars">★★★★★</div>
+                        <p>"Harga terjangkau tapi fasilitas lengkap, recommended banget!"</p>
+                    </div>
+                </div>
+
+                <!-- ITEM 3 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" class="testimonial-img">
+                        <h5>Andi Saputra</h5>
+                        <small>Surabaya</small>
+                        <div class="stars">★★★★★</div>
+                        <p>"Admin fast response, booking mudah langsung ke WhatsApp."</p>
+                    </div>
+                </div>
+
+                <!-- TAMBAHAN BIAR LOOP HALUS -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card text-center">
+                        <img src="https://randomuser.me/api/portraits/women/50.jpg" class="testimonial-img">
+                        <h5>Dewi Lestari</h5>
+                        <small>Yogyakarta</small>
+                        <div class="stars">★★★★★</div>
+                        <p>"Tour guide ramah dan profesional, perjalanan jadi menyenangkan."</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </section>
@@ -418,6 +493,26 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
+var testimonialSwiper = new Swiper(".testimonialSwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,
+    speed: 1000,
+
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+    },
+
+    breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+    }
+});
+</script>
+
+<script>
 function bookingWA(namaPaket, harga) {
     let nomor = "6285882418210"; // GANTI dengan nomor WA kamu (pakai 62)
 
@@ -444,7 +539,7 @@ var swiper = new Swiper(".mySwiper", {
     speed: 800,
 
     // supaya bisa drag manual
-    allowTouchMove: true,
+    allowTouchMove: false,
     grabCursor: false,
     simulateTouch: true,
 
