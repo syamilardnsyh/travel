@@ -13,6 +13,21 @@
   <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
+
+  <style>
+    body.login-page {
+      background-image: url('https://i.pinimg.com/1200x/4b/8f/1e/4b8f1eea3a2c000826e95d81d4de2f42.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      
+      /* Efek transparan */
+      background-color: rgba(0, 0, 0, 0.5);
+      background-blend-mode: overlay;
+    }
+  </style>
+
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -27,7 +42,7 @@
     <div class="alert alert-danger">{{session('failed')}}</div>
     @endif
 
-      <p class="login-box-msg">Register Here</p>
+      <p class="login-box-msg">Erlangga Tour & Travel</p>
 
       <form action="/register" method="post">
         @csrf
@@ -88,12 +103,8 @@
       </form>
 
       <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+        <a href="/auth-google-redirect" class="btn btn-block btn-danger">
+          <i class="fab fa-google mr-2"></i> Sign in using Google
         </a>
       </div>
       <!-- /.social-auth-links -->
