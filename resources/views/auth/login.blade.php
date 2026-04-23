@@ -13,6 +13,21 @@
   <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
+
+  <style>
+    body.login-page {
+      background-image: url('https://i.pinimg.com/1200x/4b/8f/1e/4b8f1eea3a2c000826e95d81d4de2f42.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      
+      /* Efek transparan */
+      background-color: rgba(0, 0, 0, 0.5);
+      background-blend-mode: overlay;
+    }
+  </style>
+
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
