@@ -43,7 +43,7 @@
                 </ul>
                     <span class="nav-indicator"></span>
 
-                <@auth
+                @auth
                 <span class="text-white me-3">Halo, {{ Auth::user()->name }}!</span>
                     <a href="/welcome" class="btn btn-success">Dashboard</a>
                     <a href="/logout" class="btn btn-success">Logout</a>
@@ -141,7 +141,7 @@
     <div class="overlay"></div>
 <section class="section team text-center">
     <div class="container">
-        <h2 class="section-title">Tim Profesional</h2>
+        <h1 class="section-title">Tim Profesional</h1>
 
         <!-- CEO -->
         <div class="row justify-content-center mb-5">
@@ -185,22 +185,62 @@
     </div>
 </section>
 </section>
-</section>
-
-<!-- CTA -->
-<section class="section">
-    <div class="container">
-        <div class="cta text-center" data-aos="zoom-in">
-            <h2>Siap Liburan?</h2>
-            <p>Mulai perjalanan terbaik bersama kami sekarang</p>
-            <a href="/welcome#paket" class="btn btn-light">Lihat Paket</a>
-        </div>
-    </div>
-</section>
 
 <!-- FOOTER -->
-<footer class="text-center py-4 bg-dark text-white">
-    <small>&copy; 2026 Erlangga Travel</small>
+<footer class="footer-custom text-white">
+    <div class="container-fluid px-5 py-5">
+        <div class="row">
+
+            <!-- Logo -->
+            <div class="col-md-3">
+                <h4 class="fw-bold">Erlangga Tour & Travel</h4>
+                <p>Partner perjalanan terpercaya Anda</p>
+
+                <button class="btn btn-primary mt-3">
+                    Jadi Partner
+                </button>
+            </div>
+
+            <!-- Tentang -->
+            <div class="col-md-3">
+                <h5>Tentang</h5>
+                <ul class="list-unstyled">
+                    <li>Cara Pesan</li>
+                    <li>Hubungi Kami</li>
+                    <li>Pusat Bantuan</li>
+                    <li>Karier</li>
+                </ul>
+            </div>
+
+            <!-- Produk -->
+            <div class="col-md-3">
+                <h5>Produk</h5>
+                <ul class="list-unstyled">
+                    <li>Hotel</li>
+                    <li>Sewa Bus</li>
+                    <li>Paket Perjalanan Religi</li>
+                    <li>Paket Wisata</li>
+                </ul>
+            </div>
+
+            <!-- Lainnya -->
+            <div class="col-md-3">
+                <h5>Lainnya</h5>
+                <ul class="list-unstyled">
+                    <li>Affiliate</li>
+                    <li>Blog</li>
+                    <li>Privasi</li>
+                    <li>Syarat & Ketentuan</li>
+                </ul>
+            </div>
+
+        </div>
+            
+        <hr class="mt-4">
+        <div class="text-center">
+            <small>&copy; 2026 PT. Erlangga Tour & Travel</small>
+        </div>
+    </div>
 </footer>
 
 <!-- JS -->

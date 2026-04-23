@@ -370,7 +370,7 @@
 
 <!-- TESTIMONIAL -->
 <section class="py-5 bg-light">
-    <div class="container-fluid px-5">
+    <div class="container py-5">
         <h2 class="text-center fw-bold mb-5">Apa Kata Pelanggan Kami?</h2>
 
         <div class="testimonial-wrapper">
@@ -420,8 +420,102 @@
                         <p>"Tour guide ramah dan profesional, perjalanan jadi menyenangkan."</p>
                     </div>
                 </div>
-
+                
+                <div class="swiper-slide">
+                    <div class="testimonial-card text-center">
+                        <img src="https://i.pinimg.com/736x/a6/f1/91/a6f191c077d1c6737dbd97b2a7066208.jpg" class="testimonial-img">
+                        <h5>Yanto</h5>
+                        <small>Solo</small>
+                        <div class="stars">★★★★★</div>
+                        <p>"Sangat Mudah di jangkau, pelayanan terbaik!"</p>
+                    </div>
             </div>
+            <div class="swiper-slide">
+                    <div class="testimonial-card text-center">
+                        <img src="https://i.pinimg.com/736x/6b/a0/3c/6ba03cdbd6115e0ace705d1b8856e63a.jpg" class="testimonial-img">
+                        <h5>Farid Jr</h5>
+                        <small>Tangerang</small>
+                        <div class="stars">★★★★★</div>
+                        <p>"Website sangat mudah digunakan, pelayanan prima!"</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="newsletter-section text-white">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- KIRI (TEXT) -->
+            <div class="col-md-7" data-aos="fade-right">
+                <h2 class="fw-bold">
+                    Dapatkan info terbaru seputar tips perjalanan,
+                    rekomendasi, serta promo.
+                </h2>
+
+                <div class="d-flex mt-4 newsletter-box">
+                    <input type="email" class="form-control" placeholder="Alamat emailmu">
+                    <button class="btn btn-warning ms-2">
+                        Berlangganan
+                    </button>
+                </div>
+
+                <p class="mt-3">
+                    Semua pesanan dalam genggaman, selalu siap jalan-jalan.
+                </p>
+            </div>
+
+            <!-- KANAN (IMAGE) -->
+            <div class="col-md-5 text-center" data-aos="fade-left">
+                <img src="{{ asset('admin/dist/img/phone.png') }}" 
+                     class="img-fluid newsletter-img">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="kontak" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Hubungi Kami</h2>
+
+        <div class="row">
+
+            <!-- FORM -->
+            <div class="col-md-6">
+                <form>
+                    <div class="mb-3">
+                        <label>Nama</label>
+                        <input type="text" class="form-control" placeholder="Masukkan nama">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" placeholder="Masukkan email">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Pesan</label>
+                        <textarea class="form-control" rows="4" placeholder="Tulis pesan..."></textarea>
+                    </div>
+
+                    <button class="btn btn-warning w-100" onclick="kirimWA()">Kirim Pesan</button>
+                </form>
+            </div>
+
+            <!-- INFO -->
+            <div class="col-md-6">
+                <h5 class="fw-bold">Erlangga Tour & Travel</h5>
+                <p><i class="bi bi-geo-alt"></i> Tangerang, Indonesia</p>
+                <p><i class="bi bi-whatsapp"></i> 0858-8241-8210</p>
+                <p><i class="bi bi-envelope"></i> erlangga@gmail.com</p>
+
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d247.9119190534424!2d106.465257586415!3d-6.185492784094582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTEnMDcuNSJTIDEwNsKwMjcnNTQuOSJF!5e0!3m2!1sid!2sid!4v1776931214986!5m2!1sid!2sid"
+                    width="100%" height="250" style="border:0; border-radius:10px;">
+                </iframe>
+            </div>
+
         </div>
     </div>
 </section>
@@ -433,7 +527,7 @@
 
             <!-- Logo -->
             <div class="col-md-3">
-                <h3 class="fw-bold">Erlangga Travel</h3>
+                <h4 class="fw-bold">Erlangga Tour & Travel</h4>
                 <p>Partner perjalanan terpercaya Anda</p>
 
                 <button class="btn btn-primary mt-3">
@@ -497,8 +591,11 @@ var testimonialSwiper = new Swiper(".testimonialSwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
     loop: true,
+    initialSlide: 1,
+    centeredSlides: true,
     speed: 1000,
 
+    // supaya bisa drag manual
     autoplay: {
         delay: 2500,
         disableOnInteraction: false,
@@ -528,20 +625,23 @@ Mohon info lebih lanjut ya`;
 
     window.open(url, '_blank');
 }
+function kirimWA() {
+    let nama = document.querySelector("input[type='text']").value;
+    let pesan = document.querySelector("textarea").value;
+
+    let url = `https://wa.me/6285882418210?text=Halo, saya ${nama}. ${pesan}`;
+    window.open(url, '_blank');
+}
 </script>
 
 <script>
 var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 2.5,
+    slidesPerView: 3,
     spaceBetween: 20,
     loop: true,
     centeredSlides: true,
-    speed: 800,
-
-    // supaya bisa drag manual
-    allowTouchMove: false,
-    grabCursor: false,
-    simulateTouch: true,
+    initialSlide: 1,
+    speed: 1000,
 
     // nonaktif autoplay:false kalo mau geser manual
     autoplay: {
@@ -556,6 +656,7 @@ var swiper = new Swiper(".mySwiper", {
     },
 
     breakpoints: {
+        0: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 }
     }

@@ -171,7 +171,7 @@
 
         .testimonial-card {
             background: #fff;
-            padding: 30px 20px;
+            padding: 50px 40px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             transition: 0.3s;
@@ -264,16 +264,12 @@
             display: flex;
             align-items: stretch;
         }
-        
-        .swiper-slide {
-            will-change: transform;
-        }
 
         /* SLIDE */
-        .swiper-slide {
+        .mySwiper .swiper-slide {
             width: 300px;
             transition: all 0.4s ease;
-            transform: scale(1);
+            transform: scale(0.8);
             opacity: 1;
             cursor: pointer;
         }
@@ -284,7 +280,7 @@
         }
 
         /* SLIDE AKTIF (TENGAH) */
-        .swiper-slide-active {
+        .mySwiper .swiper-slide-active {
             transform: scale(1);
             opacity: 1;
             z-index: 2;
@@ -306,6 +302,42 @@
 
         .swiper-button-prev {
             left: -25px;
+        }
+
+        .newsletter-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center;
+            background-size: cover;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .newsletter-box input {
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        .newsletter-box button {
+            height: 50px;
+            border-radius: 8px;
+            padding: 0 20px;
+            font-weight: 600;
+        }
+
+        .newsletter-img {
+            max-height: 350px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .newsletter-box button:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
         }
       
         .footer-custom {

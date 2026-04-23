@@ -88,6 +88,10 @@
 </div>
 <!-- /.login-box -->
 
+<section id="login" class="login-hero">
+    <div class="container"></div>
+</section>
+
 <!-- jQuery -->
 <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->

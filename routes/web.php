@@ -38,3 +38,6 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/tentang', function () {
     return view('tentang');
 });
+Route::get('/maps', function () {
+    return view('maps');
+});
