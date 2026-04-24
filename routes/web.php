@@ -15,6 +15,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', fn () => view('auth.register'))->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot.password');
+Route::post('/forgot-password', [AuthController::class, 'sendResetOtp']);
+
+Route::get('/reset-password/{unique_id}', [AuthController::class, 'showResetForm'])->name('reset.password');
+Route::post('/reset-password/{unique_id}', [AuthController::class, 'updatePassword']);
+
 Route::get('/auth-google-redirect', [AuthController::class, 'google_redirect']);
 Route::get('/auth-google-callback', [AuthController::class, 'google_callback']);
 

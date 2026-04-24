@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('type', ['register', 'reset_password']);
             $table->enum('send_via', ['email', 'sms', 'wa']);
             $table->integer('resend')->default(3);
-            $table->enum('status', ['active', 'valid', 'invalid']);
+            $table->enum('status', ['active', 'valid', 'invalid', 'used']);
             $table->timestamps();
         });
     }

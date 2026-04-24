@@ -3,106 +3,80 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Buat Password Baru</title>
 
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- icheck bootstrap -->
   <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-  <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
-  <!-- Background -->
+
   @vite('resources/css/app.css')
 
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-  </div>
-  <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
+    <div class="card-body login-card-body rounded">
 
-    @if (session('failed'))
-    <div class="alert alert-danger">{{session('failed')}}</div>
-    @endif
+      @if (session('success'))
+        <div class="alert alert-success text-center">{{session('success')}}</div>
+      @endif
 
-      <p class="login-box-msg"><b>Erlangga Tour & Travel</b></p>
+      <p class="login-box-msg"><b>Erlangga Tour & Travel</b><br>Masukkan kode OTP dari email dan buat password baru Anda.</p>
 
-      <form action="/login" method="post">
+      <form action="/reset-password/{{ $unique_id }}" method="post">
         @csrf
-        @error('email')
+        
+        @error('otp')
           <small class="text-danger">{{$message}}</small>
         @enderror
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
+          <input type="text" name="otp" class="form-control" placeholder="Masukkan 6 Digit OTP" required autofocus>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-key"></span>
             </div>
           </div>
         </div>
+
         @error('password')
           <small class="text-danger">{{$message}}</small>
         @enderror
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password" id="password">
+          <input type="password" name="password" class="form-control" placeholder="Password Baru" id="password" required minlength="6">
           <div class="input-group-append show-password">
-            <div class="input-group-text">
+            <div class="input-group-text" style="cursor: pointer;">
               <span class="fas fa-lock" id="password-lock"></span>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" name="remember" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
+
+        <div class="input-group mb-4">
+          <input type="password" name="password_confirmation" class="form-control" placeholder="Ulangi Password Baru" id="password_confirmation" required minlength="6">
+          <div class="input-group-append show-password-confirm">
+            <div class="input-group-text" style="cursor: pointer;">
+              <span class="fas fa-lock" id="password-confirm-lock"></span>
             </div>
           </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-success btn-block">Simpan & Login</button>
           </div>
-          <!-- /.col -->
         </div>
       </form>
 
-      <div class="social-auth-links text-center mb-3">
-        <a href="/auth-google-redirect" class="btn btn-block btn-danger">
-          <i class="fab fa-google mr-2"></i> Login dengan Google
-        </a>
-      </div>
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="/forgot-password">Lupa Password</a>
-      </p>
-      <p class="mb-0">
-        <a href="/register" class="text-center">Buat Akun</a>
-      </p>
     </div>
-    <!-- /.login-card-body -->
   </div>
 </div>
-<!-- /.login-box -->
 
-<section id="login" class="login-hero">
-    <div class="container"></div>
-</section>
-
-<!-- jQuery -->
 <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
 <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
 <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
 
 <script>
+    // Script mata untuk show/hide password baru
     $('.show-password').on('click', function(){
         if($('#password').attr('type') == 'password'){
             $('#password').attr('type', 'text');
@@ -111,7 +85,18 @@
             $('#password').attr('type', 'password');
             $('#password-lock').attr('class', 'fas fa-lock');
         }
-    })
+    });
+
+    // Script mata untuk show/hide konfirmasi password
+    $('.show-password-confirm').on('click', function(){
+        if($('#password_confirmation').attr('type') == 'password'){
+            $('#password_confirmation').attr('type', 'text');
+            $('#password-confirm-lock').attr('class', 'fas fa-unlock');
+        }else{
+            $('#password_confirmation').attr('type', 'password');
+            $('#password-confirm-lock').attr('class', 'fas fa-lock');
+        }
+    });
 </script>
 </body>
 </html>

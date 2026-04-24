@@ -31,9 +31,18 @@ class VerificationController extends Controller
             return redirect('/verify');
         }
         $verify->update(['status' => 'valid']);
-        User::find($verify->user_id)->update(['status' => 'active']);
-        Auth::login($user);
-        return redirect('/welcome');
+        
+        // --- PERUBAHAN DI SINI ---
+        if($verify->type == 'register') {
+            $user = User::find($verify->user_id);
+            $user->update(['status' => 'active']);
+            Auth::login($user);
+            return redirect('/welcome'); 
+        } 
+        elseif ($verify->type == 'reset_password') {
+            // Jika reset password, arahkan ke halaman input password baru
+            return redirect('/reset-password' . $verify->unique_id);
+        }
     }
 
     public function store(Request $request){
