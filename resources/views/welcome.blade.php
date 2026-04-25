@@ -27,7 +27,7 @@
 <!-- Navbar -->
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid px-5">
-        <img src="{{ asset('admin/dist/img/logo.png') }}" width="60" class="me-2">
+        <img src="{{asset('admin/dist/img/logo.png')}}" width="60" class="me-2">
         <a class="navbar-brand fw-bold">Erlangga Tour & Travel</a>
 
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -111,7 +111,7 @@
 
         <div class="swiper-slide">
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                 <img src="{{ asset('admin/dist/img/bali.jpg') }}" class="card-img-top">
+                 <img src="{{asset('admin/dist/img/bali.jpg')}}" class="card-img-top">
                     <div class="card-body">
                         <h5><b>Bali Tour</b></h5>
                         <p>5 Hari 4 Malam</p>
@@ -134,7 +134,7 @@
 
         <div class="swiper-slide">
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                <img src="{{ asset('admin/dist/img/bromo.jfif') }}" class="card-img-top">
+                <img src="{{asset('admin/dist/img/bromo.jfif')}}" class="card-img-top">
                 <div class="card-body">
                     <h5><b>Bromo Trip</b></h5>
                     <p>3 Hari 2 Malam</p>
@@ -157,7 +157,7 @@
 
         <div class="swiper-slide">
             <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                <img src="{{ asset('admin/dist/img/bandung.jfif') }}" class="card-img-top">
+                <img src="{{asset('admin/dist/img/bandung.jfif')}}" class="card-img-top">
                 <div class="card-body">
                     <h5><b>Bandung Tour</b></h5>
                     <p>1 Hari</p>
@@ -180,7 +180,7 @@
 
         <div class="swiper-slide">
                     <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                        <img src="{{ asset('admin/dist/img/bogor.jfif') }}" class="card-img-top">
+                        <img src="{{asset('admin/dist/img/bogor.jfif')}}" class="card-img-top">
                         <div class="card-body">
                             <h5><b>Bogor</b></h5>
                             <p>1 Hari 2 Malam</p>
@@ -201,7 +201,7 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                        <img src="{{ asset('admin/dist/img/prambanan.jfif') }}" class="card-img-top">
+                        <img src="{{asset('admin/dist/img/prambanan.jfif')}}" class="card-img-top">
                         <div class="card-body">
                             <h5><b>Jogja Trip</b></h5>
                             <p>3 Hari 2 Malam</p>
@@ -226,6 +226,36 @@
             <div class="swiper-button-next"></div>
              <div class="swiper-button-prev"></div>
         </div>
+        <div class="row">
+    @foreach ($semua_paket as $paket)
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+            
+            <img src="{{asset('images/paket/' . $paket->gambar_paket)}}" class="card-img-top" alt="{{$paket->nama_paket}}" style="height: 200px; object-fit: cover;">
+            
+            <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{$paket->nama_paket}}</h5>
+                
+                <p class="text-muted mb-2">
+                    <i class="fas fa-map-marker-alt text-danger"></i> {{$paket->destinasi}} | 
+                    <i class="far fa-clock text-primary"></i> {{$paket->durasi}}
+                </p>
+                
+                <p class="card-text">{{Str::limit($paket->deskripsi, 100)}}</p>
+                
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-success font-weight-bold" style="font-size: 1.2rem;">
+                        Rp {{number_format($paket->harga, 0, ',', '.')}}
+                    </span>
+                    <a href="#" class="btn btn-sm btn-outline-primary">Detail</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    @endforeach
+    </div>
     </div>
 </section>
 
@@ -303,7 +333,7 @@
             <!-- BUS 3 -->
             <div class="col-md-3">
                 <div class="bus-card text-center">
-                    <img src="{{ asset('admin/dist/img/bus3.png') }}" class="bus-img">
+                    <img src="{{asset('admin/dist/img/bus3.png')}}" class="bus-img">
 
                     <h5 class="mt-3 fw-bold">Big Bus Pariwisata</h5>
                     <p>Kapasitas 45 - 50 Orang</p>
