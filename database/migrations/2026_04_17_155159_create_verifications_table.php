@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('verifications')) {
         Schema::create('verifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('user');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->enum('status', ['active', 'valid', 'invalid', 'used']);
             $table->timestamps();
         });
+    }
     }
 
     /**

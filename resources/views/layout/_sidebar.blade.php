@@ -42,6 +42,13 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/nambah-wisata" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Nambah Paket Wisata
+              </p>
+          </li>
           @if (auth()->user()->role == 'admin, staff')
           <li class="nav-item">
             <a href="/user" class="nav-link">
@@ -53,8 +60,8 @@
           </li>
           @endif
           <li class="nav-item">
-            <a href="/logout" class="nav-link">
-              <i class="nav-icon fas fa-power-off"></i>
+            <a href="/logout" class="nav-link text-danger">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Logout
               </p>

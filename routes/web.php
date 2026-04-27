@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\WisataController;
+use App\Models\PaketWisata;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,8 +39,9 @@ Route::group(['middleware' => ['auth', 'check_role:costumer', 'check_status']], 
 Route::group(['middleware' => ['auth', 'check_role:admin,staff']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
 });
-Route::get('/welcome', function (){
-    return view('welcome');
+Route::get('/welcome', function () {
+    $semua_paket = PaketWisata::latest()->get(); 
+    return view('welcome', compact('semua_paket')); 
 });
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/tentang', function () {
@@ -47,3 +50,6 @@ Route::get('/tentang', function () {
 Route::get('/maps', function () {
     return view('maps');
 });
+
+Route::get('/nambah-wisata', [WisataController::class, 'create']);
+Route::post('/nambah-wisata', [WisataController::class, 'store']);
