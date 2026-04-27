@@ -507,8 +507,8 @@
             <div class="col-md-6">
                 <h5 class="fw-bold">Erlangga Tour & Travel</h5>
                 <p><i class="bi bi-geo-alt"></i> Tangerang, Indonesia</p>
-                <p><i class="bi bi-whatsapp"></i> 0858-8241-8210</p>
-                <p><i class="bi bi-envelope"></i> erlangga@gmail.com</p>
+                <p><i class="bi bi-whatsapp"></i> 081298501067</p>
+                <p><i class="bi bi-envelope"></i> erlanggapariwisata@gmail.com</p>
 
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d247.9119190534424!2d106.465257586415!3d-6.185492784094582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTEnMDcuNSJTIDEwNsKwMjcnNTQuOSJF!5e0!3m2!1sid!2sid!4v1776931214986!5m2!1sid!2sid"
