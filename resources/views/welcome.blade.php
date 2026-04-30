@@ -53,8 +53,12 @@
                 </div>
 
                 @auth
-                <span class="text-white me-3">Halo, {{ Auth::user()->name }}!</span>
-                    <a href="/welcome" class="btn btn-success">Dashboard</a>
+                <span class="text-white me-3">Halo, {{Auth::user()->name }}!</span>
+                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                    <a href="/dashboard" class="btn btn-success">Dashboard</a>
+                @else
+                    <a href="/welcome" class="btn btn-success">Profil</a>
+                @endif
                     <a href="/logout" class="btn btn-success">Logout</a>
                 @endauth
 

@@ -11,6 +11,7 @@ use Laravel\Socialite\Socialite;
 use Illuminate\Support\Str;
 use App\Models\Verification;
 use App\Mail\OtpEmail;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -93,7 +94,7 @@ class AuthController extends Controller
         $otp = rand(100000, 999999);
         $unique_id = uniqid();
 
-        $verify = \App\Models\Verification::create([
+        $verify = Verification::create([
             'user_id' => $user->id,
             'unique_id' => $unique_id,
             'otp' => md5($otp),
@@ -154,5 +155,10 @@ class AuthController extends Controller
         $verify->update(['status' => 'invalid']);
 
         return redirect('/login')->with('success', 'Password berhasil diubah. Silakan login dengan password baru.');
+        
+        // total pengunjung web
+        $pengunjung_hari_ini = Visitor::whereDate('created_at', Carbon::today())->count();
+
+        return view('dashboard', compact('total_users', 'pengunjung_hari_ini'));
     }
 }
