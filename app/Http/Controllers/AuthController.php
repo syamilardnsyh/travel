@@ -53,7 +53,7 @@ class AuthController extends Controller
         'name' => $googleUser->name,
         'email' => $googleUser->email,
         'status' => 'active',
-    // Berikan password acak yang dienkripsi 
+    // password acak yang dienkripsi 
         'password' => bcrypt(Str::random(16)), 
         ]);
         }
@@ -79,7 +79,7 @@ class AuthController extends Controller
         return view('auth.forgot-password');
     }
 
-    // Memproses email dan mengirim OTP
+    // Proses email dan mengirim OTP
     public function sendResetOtp(Request $request)
     {
         $request->validate(['email' => 'required|email']);
@@ -109,7 +109,7 @@ class AuthController extends Controller
         return redirect('/reset-password/'.$unique_id)->with('success', 'Kode OTP reset password telah dikirim ke email Anda.');
     }
 
-    // Menampilkan halaman Input Password Baru (setelah OTP sukses)
+    // Menampilkan halaman Input Password Baru
     public function showResetForm($unique_id)
     {
         // Cari data verifikasi yang statusnya masih active
@@ -161,4 +161,5 @@ class AuthController extends Controller
 
         return view('dashboard', compact('total_users', 'pengunjung_hari_ini'));
     }
+
 }
