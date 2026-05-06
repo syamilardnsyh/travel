@@ -20,9 +20,6 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/welcome" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
@@ -82,6 +79,15 @@
             <a href="/nambah-wisata" class="nav-link active">
               <i class="nav-icon fas fa-plus-square"></i>
               <p>Nambah Paket Wisata</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/spk-smart" class="nav-link active">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Metode SMART
+              </p>
             </a>
           </li>
 

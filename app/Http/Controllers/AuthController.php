@@ -11,7 +11,11 @@ use Laravel\Socialite\Socialite;
 use Illuminate\Support\Str;
 use App\Models\Verification;
 use App\Mail\OtpEmail;
+<<<<<<< HEAD
 use App\Models\PaketWisata;
+=======
+use Carbon\Carbon;
+>>>>>>> 99fb2988a84bf9ce1844a9f53bca1277e20f44bd
 
 class AuthController extends Controller
 {
@@ -53,7 +57,7 @@ class AuthController extends Controller
         'name' => $googleUser->name,
         'email' => $googleUser->email,
         'status' => 'active',
-    // Berikan password acak yang dienkripsi 
+    // password acak yang dienkripsi 
         'password' => bcrypt(Str::random(16)), 
         ]);
         }
@@ -79,7 +83,7 @@ class AuthController extends Controller
         return view('auth.forgot-password');
     }
 
-    // Memproses email dan mengirim OTP
+    // Proses email dan mengirim OTP
     public function sendResetOtp(Request $request)
     {
         $request->validate(['email' => 'required|email']);
@@ -94,7 +98,7 @@ class AuthController extends Controller
         $otp = rand(100000, 999999);
         $unique_id = uniqid();
 
-        $verify = \App\Models\Verification::create([
+        $verify = Verification::create([
             'user_id' => $user->id,
             'unique_id' => $unique_id,
             'otp' => md5($otp),
@@ -109,7 +113,7 @@ class AuthController extends Controller
         return redirect('/reset-password/'.$unique_id)->with('success', 'Kode OTP reset password telah dikirim ke email Anda.');
     }
 
-    // Menampilkan halaman Input Password Baru (setelah OTP sukses)
+    // Menampilkan halaman Input Password Baru
     public function showResetForm($unique_id)
     {
         // Cari data verifikasi yang statusnya masih active
@@ -155,5 +159,11 @@ class AuthController extends Controller
         $verify->update(['status' => 'invalid']);
 
         return redirect('/login')->with('success', 'Password berhasil diubah. Silakan login dengan password baru.');
+        
+        // total pengunjung web
+        $pengunjung_hari_ini = Visitor::whereDate('created_at', Carbon::today())->count();
+
+        return view('dashboard', compact('total_users', 'pengunjung_hari_ini'));
     }
+
 }

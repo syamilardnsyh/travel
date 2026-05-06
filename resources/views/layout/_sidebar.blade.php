@@ -7,7 +7,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
+      <!-- Sidebar user  -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
@@ -32,44 +32,47 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="/dashboard" class="nav-link {{(request()->is('dashboard')) ? 'active' : ''}}">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard 
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/nambah-wisata" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Nambah Paket Wisata
-              </p>
-          </li>
-          @if (auth()->user()->role == 'admin, staff')
-          <li class="nav-item">
-            <a href="/user" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                User
-              </p>
-            </a>
-          </li>
-          @endif
-          <li class="nav-item">
-            <a href="/logout" class="nav-link text-danger">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Logout
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
+    
+    <li class="nav-item">
+      <a href="/dashboard" class="nav-link">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>Dashboard</p> 
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="/nambah-wisata" class="nav-link">
+        <i class="nav-icon fas fa-folder-plus"></i>
+        <p>Nambah Paket Wisata</p>
+      </a>
+    </li>
+
+    @if (auth()->user()->role == 'admin, staff')
+    <li class="nav-item">
+      <a href="/user" class="nav-link">
+        <i class="nav-icon fas fa-users"></i>
+        <p>User</p>
+      </a>
+    </li>
+    @endif
+
+    <li class="nav-item">
+      <a href="/spk-smart" class="nav-link">
+        <i class="nav-icon fas fa-calculator"></i>
+        <p>Metode SMART</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="/logout" class="nav-link text-danger">
+        <i class="nav-icon fas fa-sign-out-alt"></i>
+        <p>Logout</p>
+      </a>
+    </li>
+
+  </ul>
+</nav>
+<!-- /.sidebar-menu -->
+</div>
     <!-- /.sidebar -->
   </aside>
