@@ -11,6 +11,7 @@ use Laravel\Socialite\Socialite;
 use Illuminate\Support\Str;
 use App\Models\Verification;
 use App\Mail\OtpEmail;
+use App\Models\PaketWisata;
 
 class AuthController extends Controller
 {
