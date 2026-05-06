@@ -123,9 +123,6 @@ Route::get('/dashboard', function () {
         return $b['nilai'] <=> $a['nilai'];
     });
 
-    // =========================================================
-    // BARU: AMBIL 4 DATA TERATAS UNTUK GRAFIK DONAT
-    // =========================================================
     $label_terlaris = [];
     $data_terlaris = [];
     
@@ -134,11 +131,9 @@ Route::get('/dashboard', function () {
     
     foreach($top_4 as $top) {
         $label_terlaris[] = $top['nama'];
-        // Kita ambil jumlah pesanannya dari array $destinasi asal
         $data_terlaris[] = $destinasi[$top['nama']]['pesanan'] ?? 0; 
     }
 
-    // Pastikan label_terlaris dan data_terlaris ikut dilempar ke compact
     return view('dashboard', compact(
         'total_users', 'pengunjung_hari_ini', 'total_paket', 'total_order', 
         'data_bulanan', 'ranking_spk', 'label_terlaris', 'data_terlaris'
