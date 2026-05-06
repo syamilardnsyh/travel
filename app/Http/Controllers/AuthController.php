@@ -13,7 +13,7 @@ use App\Models\Verification;
 use App\Mail\OtpEmail;
 <<<<<<< HEAD
 use App\Models\PaketWisata;
-=======
+======= use App\Models\Visitor;
 use Carbon\Carbon;
 >>>>>>> 99fb2988a84bf9ce1844a9f53bca1277e20f44bd
 
