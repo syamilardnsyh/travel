@@ -254,4 +254,67 @@
 <!-- Script Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script>
+    
+    $(document).ready(function() {
+        
+        
+        var dataPesanan = {!! json_encode($data_bulanan ?? [0,0,0,0,0,0,0,0,0,0,0,0]) !!};
+        var labelTerlaris = {!! json_encode($label_terlaris ?? ['Belum Ada Data']) !!};
+        var dataTerlaris = {!! json_encode($data_terlaris ?? [0]) !!};
+
+        
+        var canvasBulanan = document.getElementById('laporan-pendapatan-canvas');
+        if (canvasBulanan) {
+            var ctxBulanan = canvasBulanan.getContext('2d');
+            new Chart(ctxBulanan, {
+                type: 'line', 
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'],
+                    datasets: [{
+                        label: 'Total Pesanan Masuk',
+                        data: dataPesanan, 
+                        backgroundColor: 'rgba(60,141,188,0.2)',
+                        borderColor: 'rgba(60,141,188,1)',
+                        borderWidth: 2,
+                        fill: true,
+                        lineTension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: { beginAtZero: true }
+                        }]
+                    }
+                }
+            });
+        }
+
+        // 
+        var canvasTerlaris = document.getElementById('paket-terlaris-canvas');
+        if (canvasTerlaris) {
+            var ctxTerlaris = canvasTerlaris.getContext('2d');
+            new Chart(ctxTerlaris, {
+                type: 'doughnut',
+                data: {
+                    labels: labelTerlaris, // 👈 Memasukkan variabel label destinasi
+                    datasets: [{
+                        data: dataTerlaris, // 👈 Memasukkan variabel angka pesanan
+                        backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: { position: 'right' }
+                }
+            });
+        }
+
+    });
+</script>
 @endsection

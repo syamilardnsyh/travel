@@ -70,8 +70,80 @@ Route::get('/dashboard', function () {
     $total_paket = PaketWisata::count();
     $total_order = Pesanan::count();
 
-    return view('dashboard', compact('total_users', 'pengunjung_hari_ini', 'total_paket', 'total_order'));
-})->middleware('auth');
+    $data_bulanan = [];
+    for ($bulan = 1; $bulan <= 12; $bulan++) {
+
+        $data_bulanan[] = Pesanan::whereMonth('created_at', $bulan)
+                                 ->whereYear('created_at', date('Y'))
+                                 ->count();
+    }
+
+    $semua_paket = PaketWisata::all(); 
+    $destinasi = [];
+
+    // Looping data asli dari database untuk dijadikan bahan SPK
+    foreach($semua_paket as $paket) {
+        $destinasi[$paket->nama_paket] = [
+            // Menghitung berapa kali paket ini diorder di tabel pesanan
+            'pesanan' => Pesanan::where('paket_wisata_id', $paket->id)->count(), 
+            // Misal rating sementara di-set statis (atau ambil dari tabel Review jika ada)
+            'rating'  => 4.5, 
+            // Mengambil harga asli dari database
+            'harga'   => $paket->harga 
+        ];
+    }
+
+    // Bobot SPK (Bisa statis atau dipanggil dari tabel pengaturan_spk)
+    $w_pesanan = 0.40; 
+    $w_rating  = 0.30; 
+    $w_harga   = 0.30; 
+
+    // Mencegah error jika database paket masih kosong
+    if(count($destinasi) > 0) {
+        $c1_max = max(array_column($destinasi, 'pesanan')); $c1_min = min(array_column($destinasi, 'pesanan'));
+        $c2_max = max(array_column($destinasi, 'rating'));  $c2_min = min(array_column($destinasi, 'rating'));
+        $c3_max = max(array_column($destinasi, 'harga'));   $c3_min = min(array_column($destinasi, 'harga'));
+
+        $hasil_spk = [];
+        foreach ($destinasi as $nama => $kriteria) {
+            $u_pesanan = ($c1_max - $c1_min != 0) ? ($kriteria['pesanan'] - $c1_min) / ($c1_max - $c1_min) : 0;
+            $u_rating  = ($c2_max - $c2_min != 0) ? ($kriteria['rating'] - $c2_min) / ($c2_max - $c2_min) : 0;
+            $u_harga   = ($c3_max - $c3_min != 0) ? ($c3_max - $kriteria['harga']) / ($c3_max - $c3_min) : 0; 
+
+            $nilai_akhir = ($w_pesanan * $u_pesanan) + ($w_rating * $u_rating) + ($w_harga * $u_harga);
+
+            $hasil_spk[] = [
+                'nama'  => $nama,
+                'nilai' => round($nilai_akhir, 3)
+            ];
+        }
+
+        $ranking_spk = $hasil_spk; 
+    usort($ranking_spk, function($a, $b) {
+        return $b['nilai'] <=> $a['nilai'];
+    });
+
+    // =========================================================
+    // BARU: AMBIL 4 DATA TERATAS UNTUK GRAFIK DONAT
+    // =========================================================
+    $label_terlaris = [];
+    $data_terlaris = [];
+    
+    // Ambil maksimal 4 destinasi terbaik dari hasil SPK
+    $top_4 = array_slice($ranking_spk, 0, 4);
+    
+    foreach($top_4 as $top) {
+        $label_terlaris[] = $top['nama'];
+        // Kita ambil jumlah pesanannya dari array $destinasi asal
+        $data_terlaris[] = $destinasi[$top['nama']]['pesanan'] ?? 0; 
+    }
+
+    // Pastikan label_terlaris dan data_terlaris ikut dilempar ke compact
+    return view('dashboard', compact(
+        'total_users', 'pengunjung_hari_ini', 'total_paket', 'total_order', 
+        'data_bulanan', 'ranking_spk', 'label_terlaris', 'data_terlaris'
+    ));
+}})->middleware('auth');
 
 Route::get('/spk-smart', function () {
     $destinasi = [
