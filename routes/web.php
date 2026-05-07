@@ -3,17 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\WisataController;
+use App\Http\Controllers\PaketController;
 use App\Models\Visitor;
 use App\Models\PaketWisata;
 use App\Models\Pesanan;
 use App\Models\User;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/welcome', [Controller::class, 'index']);
 
 Route::get('/login', fn () => view('auth.login'))->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -202,3 +202,6 @@ Route::post('/spk-smart', function (Request $request) {
 
     return view('spk-smart', compact('destinasi', 'bobot', 'utility', 'ranking_spk'));
 });
+
+Route::get('/paket/{id}', [PaketController::class, 'detail'])
+    ->name('paket.detail');

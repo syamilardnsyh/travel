@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PaketWisata;
+abstract class Controller
+{
+    public function index()
+    {
+        $paket = PaketWisata::all();
+        return view('paket.index', compact('paket'));
+    }
+}
 
 class WisataController extends Controller
 {

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Paket;
+use App\Models\PaketWisata;
+
 abstract class Controller
 {
    

@@ -252,7 +252,10 @@
                     <span class="text-success font-weight-bold" style="font-size: 1.2rem;">
                         Rp {{number_format($paket->harga, 0, ',', '.')}}
                     </span>
-                    <a href="#" class="btn btn-sm btn-outline-primary">Detail</a>
+                    <a href="{{ route('paket.detail', $paket->id) }}" 
+                    class="btn btn-sm btn-outline-primary">
+                    Detail
+                    </a>
                 </div>
             </div>
             
