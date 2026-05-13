@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Laravel\Socialite\Socialite;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use App\Models\Verification;
 use App\Mail\OtpEmail;
-use App\Models\PaketWisata;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -53,7 +53,7 @@ class AuthController extends Controller
         'name' => $googleUser->name,
         'email' => $googleUser->email,
         'status' => 'active',
-    // Berikan password acak yang dienkripsi 
+    // password acak yang dienkripsi 
         'password' => bcrypt(Str::random(16)), 
         ]);
         }
@@ -69,7 +69,7 @@ class AuthController extends Controller
     }
 
     public function logout(){
-        Auth::logout(Auth::user());
+        Auth::logout();
         return redirect('/welcome');
     }
 
@@ -79,7 +79,7 @@ class AuthController extends Controller
         return view('auth.forgot-password');
     }
 
-    // Memproses email dan mengirim OTP
+    // Proses email dan mengirim OTP
     public function sendResetOtp(Request $request)
     {
         $request->validate(['email' => 'required|email']);
@@ -94,8 +94,8 @@ class AuthController extends Controller
         $otp = rand(100000, 999999);
         $unique_id = uniqid();
 
-        $verify = \App\Models\Verification::create([
-            'user_id' => $user->id,
+        $verify = Verification::create([
+            'user_id' => Auth::id(),
             'unique_id' => $unique_id,
             'otp' => md5($otp),
             'type' => 'reset_password',
@@ -109,7 +109,7 @@ class AuthController extends Controller
         return redirect('/reset-password/'.$unique_id)->with('success', 'Kode OTP reset password telah dikirim ke email Anda.');
     }
 
-    // Menampilkan halaman Input Password Baru (setelah OTP sukses)
+    // Menampilkan halaman Input Password Baru
     public function showResetForm($unique_id)
     {
         // Cari data verifikasi yang statusnya masih active
@@ -156,4 +156,5 @@ class AuthController extends Controller
 
         return redirect('/login')->with('success', 'Password berhasil diubah. Silakan login dengan password baru.');
     }
+
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('verifications')) {
         Schema::create('verifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('user');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('unique_id');
             $table->string('otp');
             $table->enum('type', ['register', 'reset_password']);

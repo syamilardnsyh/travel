@@ -104,165 +104,116 @@
     </div>
 </section>
 
-<!-- Paket -->
-<section id="paket" class="py-5 bg-light">
-    <div class="container-fluid px-5 position-relative">
-        <h2 class="text-center mb-4 fw-bold">Paket Wisata Populer</h2>
+<!-- PAKET WISATA -->
+<section id="paket" class="py-5 paket-section">
+    <div class="container-fluid px-4 px-lg-5">
+
+        <!-- HEADER -->
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+            <div>
+                <h2 class="fw-bold paket-title">
+                    Paket Wisata Populer
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Temukan destinasi terbaik dengan harga terjangkau
+                </p>
+            </div>
+
+            <a href="#" class="btn btn-outline-primary rounded-pill px-4">
+                Lihat Semua
+            </a>
+        </div>
 
         <!-- SWIPER -->
-      <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-
-        <div class="swiper-slide">
-            <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                 <img src="{{asset('admin/dist/img/bali.jpg')}}" class="card-img-top">
-                    <div class="card-body">
-                        <h5><b>Bali Tour</b></h5>
-                        <p>5 Hari 4 Malam</p>
-                        <p><strong>Rp 1.500.000</strong></p>
-                    </div>
-                    <div class="card-detail">
-                        <p>✔ Hotel Bintang 3</p>
-                        <p>✔ Transportasi</p>
-                        <p>✔ Tour Guide</p>
-                        @auth
-                        <button onclick="bookingWA('Bali Tour','Rp 1.500.000')" class="btn btn-warning w-100">Booking </button>    
-                        @endauth
-                        @guest
-                        <a href="/login" class="btn btn-warning w-100">Booking</a>
-                        @endguest
-                    </div>
-
-            </div>
-        </div>
-
-        <div class="swiper-slide">
-            <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                <img src="{{asset('admin/dist/img/bromo.jfif')}}" class="card-img-top">
-                <div class="card-body">
-                    <h5><b>Bromo Trip</b></h5>
-                    <p>3 Hari 2 Malam</p>
-                    <p><strong>Rp 1.200.000</strong></p>
-                </div>
-                <div class="card-detail">
-                    <p>✔ Hotel Bintang 3</p>
-                    <p>✔ Transportasi</p>
-                    <p>✔ Tour Guide</p>
-                    @auth
-                    <button onclick="bookingWA('Bromo Trip','Rp 1.200.000')" class="btn btn-warning w-100">Booking </button>    
-                    @endauth
-                    @guest
-                    <a href="/login" class="btn btn-warning w-100">Booking</a>    
-                    @endguest                   
-                </div>
-
-            </div>
-        </div>
-
-        <div class="swiper-slide">
-            <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                <img src="{{asset('admin/dist/img/bandung.jfif')}}" class="card-img-top">
-                <div class="card-body">
-                    <h5><b>Bandung Tour</b></h5>
-                    <p>1 Hari</p>
-                    <p><strong>Rp 500.000</strong></p>
-                </div>
-                <div class="card-detail">
-                    <p>✔ Hotel Bintang 3</p>
-                    <p>✔ Transportasi</p>
-                    <p>✔ Tour Guide</p>
-                    @auth
-                    <button onclick="bookingWA('Bandung Tour','Rp 500.000')" class="btn btn-warning w-100">Booking </button>    
-                    @endauth
-                    @guest
-                    <a href="/login" class="btn btn-warning w-100">Booking</a>
-                    @endguest
-                </div>
-
-            </div>
-        </div>
-
-        <div class="swiper-slide">
-                    <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                        <img src="{{asset('admin/dist/img/bogor.jfif')}}" class="card-img-top">
-                        <div class="card-body">
-                            <h5><b>Bogor</b></h5>
-                            <p>1 Hari 2 Malam</p>
-                            <p><strong>Rp 700.000</strong></p>
-                        </div>
-                         <div class="card-detail">
-                            <p>✔ Hotel Bintang 3</p>
-                            <p>✔ Transportasi</p>
-                            <p>✔ Tour Guide</p>
-                            @auth
-                            <button onclick="bookingWA('Bogor','Rp 700.000')" class="btn btn-warning w-100">Booking </button>    
-                            @endauth
-                            @guest
-                            <a href="/login" class="btn btn-warning w-100">Booking</a>
-                            @endguest
-                        </div>
-                    </div>
-                </div>
+        <div class="swiper paketSwiper">
+            <div class="swiper-wrapper">
+                @foreach ($semua_paket as $paket)
                 <div class="swiper-slide">
-                    <div class="card tour-card shadow" onclick="toggleDetail(this)">
-                        <img src="{{asset('admin/dist/img/prambanan.jfif')}}" class="card-img-top">
-                        <div class="card-body">
-                            <h5><b>Jogja Trip</b></h5>
-                            <p>3 Hari 2 Malam</p>
-                            <p><strong>Rp 1.000.000</strong></p>
+                    <div class="card paket-card border-0 shadow-sm">
+
+                        <!-- IMAGE -->
+                        <div class="paket-image-wrapper">
+                            <img
+                                src="{{ asset('images/paket/' . $paket->gambar_paket) }}"
+                                class="paket-image"
+                                alt="{{ $paket->nama_paket }}">
+
+                            <!-- BADGE -->
+                            <div class="paket-badge">
+                                POPULER
+                            </div>
+
                         </div>
-                         <div class="card-detail">
-                            <p>✔ Hotel Bintang 3</p>
-                            <p>✔ Transportasi</p>
-                            <p>✔ Tour Guide</p>
-                            @auth
-                            <button onclick="bookingWA('Jogja Trip','Rp 1.000.000')" class="btn btn-warning w-100">Booking </button>    
-                            @endauth
-                            @guest
-                            <a href="/login" class="btn btn-warning w-100">Booking</a>
-                            @endguest
+
+                        <!-- BODY -->
+                        <div class="card-body">
+
+                            <!-- DESTINASI -->
+                            <small class="text-primary fw-semibold">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                {{ $paket->destinasi }}
+                            </small>
+
+                            <!-- TITLE -->
+                            <h5 class="fw-bold mt-2 paket-name">
+                                {{ $paket->nama_paket }}
+                            </h5>
+
+                            <!-- DURASI -->
+                            <div class="d-flex align-items-center text-muted small mb-3">
+                                <i class="bi bi-clock me-2"></i>
+                                {{ $paket->durasi }}
+                            </div>
+
+                            <!-- DESKRIPSI -->
+                            <p class="text-muted paket-desc">
+                                {{ Str::limit($paket->deskripsi, 90) }}
+                            </p>
+
+                            <!-- FASILITAS -->
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="fitur-item">
+                                    Hotel
+                                </span>
+                                <span class="fitur-item">
+                                    Transport
+                                </span>
+                                <span class="fitur-item">
+                                    Tour Guide
+                                </span>
+                            </div>
+                            <hr>
+
+                            <!-- FOOTER -->
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+                                    <small class="text-muted">
+                                        Mulai dari
+                                    </small>
+
+                                    <h5 class="fw-bold text-success mb-0">
+                                        Rp {{ number_format($paket->harga,0,',','.') }}
+                                    </h5>
+                                </div>
+
+                                <a href="{{ route('detail', $paket->id) }}"
+                                   class="btn btn-primary rounded-pill px-4">
+                                   Detail
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
 
-             <!-- tombol -->
+            <!-- NAVIGATION -->
             <div class="swiper-button-next"></div>
-             <div class="swiper-button-prev"></div>
+            <div class="swiper-button-prev"></div>
+
         </div>
-        <div class="row">
-    @foreach ($semua_paket as $paket)
-    <div class="col-md-4 mb-4">
-        <div class="card shadow-sm">
-            
-            <img src="{{asset('images/paket/' . $paket->gambar_paket)}}" class="card-img-top" alt="{{$paket->nama_paket}}" style="height: 200px; object-fit: cover;">
-            
-            <div class="card-body">
-                <h5 class="card-title font-weight-bold">{{$paket->nama_paket}}</h5>
-                
-                <p class="text-muted mb-2">
-                    <i class="fas fa-map-marker-alt text-danger"></i> {{$paket->destinasi}} | 
-                    <i class="far fa-clock text-primary"></i> {{$paket->durasi}}
-                </p>
-                
-                <p class="card-text">{{Str::limit($paket->deskripsi, 100)}}</p>
-                
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-success font-weight-bold" style="font-size: 1.2rem;">
-                        Rp {{number_format($paket->harga, 0, ',', '.')}}
-                    </span>
-                    <a href="{{ route('paket.detail', $paket->id) }}" 
-                    class="btn btn-sm btn-outline-primary">
-                    Detail
-                    </a>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-    @endforeach
-    </div>
     </div>
 </section>
 

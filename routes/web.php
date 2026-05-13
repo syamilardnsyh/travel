@@ -13,7 +13,9 @@ use App\Models\PaketWisata;
 use App\Models\Pesanan;
 use App\Models\User;
 
-Route::get('/welcome', [Controller::class, 'index']);
+Route::get('/', function () {
+    return redirect('/welcome');
+});
 
 Route::get('/login', fn () => view('auth.login'))->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -40,9 +42,7 @@ Route::group(['middleware' => ['auth', 'check_role:costumer']], function(){
 Route::group(['middleware' => ['auth', 'check_role:costumer', 'check_status']], function(){
     Route::get('/costumer', fn () => 'halaman costumer');
 });
-Route::group(['middleware' => ['auth', 'check_role:admin,staff']], function(){
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-});
+
 Route::get('/welcome', function () {
 
     Visitor::firstOrCreate([
@@ -69,76 +69,79 @@ Route::get('/dashboard', function () {
     $pengunjung_hari_ini = Visitor::where('visit_date', now()->toDateString())->count();
     $total_paket = PaketWisata::count();
     $total_order = Pesanan::count();
-
     $data_bulanan = [];
-    for ($bulan = 1; $bulan <= 12; $bulan++) {
 
+    for ($bulan = 1; $bulan <= 12; $bulan++) {
         $data_bulanan[] = Pesanan::whereMonth('created_at', $bulan)
-                                 ->whereYear('created_at', date('Y'))
-                                 ->count();
+            ->whereYear('created_at', date('Y'))
+            ->count();
     }
 
-    $semua_paket = PaketWisata::all(); 
+    $semua_paket = PaketWisata::all();
     $destinasi = [];
 
-    // Looping data asli dari database untuk dijadikan bahan SPK
-    foreach($semua_paket as $paket) {
+    foreach ($semua_paket as $paket) {
         $destinasi[$paket->nama_paket] = [
-            // Menghitung berapa kali paket ini diorder di tabel pesanan
-            'pesanan' => Pesanan::where('paket_wisata_id', $paket->id)->count(), 
-            // Misal rating sementara di-set statis (atau ambil dari tabel Review jika ada)
-            'rating'  => 4.5, 
-            // Mengambil harga asli dari database
-            'harga'   => $paket->harga 
+            'pesanan' => Pesanan::where('paket_wisata_id', $paket->id)->count(),
+            'rating' => 4.5,
+            'harga' => $paket->harga
         ];
     }
 
-    // Bobot SPK (Bisa statis atau dipanggil dari tabel pengaturan_spk)
-    $w_pesanan = 0.40; 
-    $w_rating  = 0.30; 
-    $w_harga   = 0.30; 
+    $ranking_spk = [];
+    $label_terlaris = [];
+    $data_terlaris = [];
 
-    // Mencegah error jika database paket masih kosong
-    if(count($destinasi) > 0) {
-        $c1_max = max(array_column($destinasi, 'pesanan')); $c1_min = min(array_column($destinasi, 'pesanan'));
-        $c2_max = max(array_column($destinasi, 'rating'));  $c2_min = min(array_column($destinasi, 'rating'));
-        $c3_max = max(array_column($destinasi, 'harga'));   $c3_min = min(array_column($destinasi, 'harga'));
+    if (count($destinasi) > 0) {
 
-        $hasil_spk = [];
+        $c1_max = max(array_column($destinasi, 'pesanan'));
+        $c1_min = min(array_column($destinasi, 'pesanan'));
+        $c2_max = max(array_column($destinasi, 'rating'));
+        $c2_min = min(array_column($destinasi, 'rating'));
+        $c3_max = max(array_column($destinasi, 'harga'));
+        $c3_min = min(array_column($destinasi, 'harga'));
+        $w_pesanan = 0.40;
+        $w_rating = 0.30;
+        $w_harga = 0.30;
+
         foreach ($destinasi as $nama => $kriteria) {
-            $u_pesanan = ($c1_max - $c1_min != 0) ? ($kriteria['pesanan'] - $c1_min) / ($c1_max - $c1_min) : 0;
-            $u_rating  = ($c2_max - $c2_min != 0) ? ($kriteria['rating'] - $c2_min) / ($c2_max - $c2_min) : 0;
-            $u_harga   = ($c3_max - $c3_min != 0) ? ($c3_max - $kriteria['harga']) / ($c3_max - $c3_min) : 0; 
-
-            $nilai_akhir = ($w_pesanan * $u_pesanan) + ($w_rating * $u_rating) + ($w_harga * $u_harga);
-
-            $hasil_spk[] = [
-                'nama'  => $nama,
+            $u_pesanan = ($c1_max - $c1_min != 0)
+                ? ($kriteria['pesanan'] - $c1_min) / ($c1_max - $c1_min)
+                : 0;
+            $u_rating = ($c2_max - $c2_min != 0)
+                ? ($kriteria['rating'] - $c2_min) / ($c2_max - $c2_min)
+                : 0;
+            $u_harga = ($c3_max - $c3_min != 0)
+                ? ($c3_max - $kriteria['harga']) / ($c3_max - $c3_min)
+                : 0;
+            $nilai_akhir =
+                ($w_pesanan * $u_pesanan) +
+                ($w_rating * $u_rating) +
+                ($w_harga * $u_harga);
+            $ranking_spk[] = [
+                'nama' => $nama,
                 'nilai' => round($nilai_akhir, 3)
             ];
         }
 
-        $ranking_spk = $hasil_spk; 
-    usort($ranking_spk, function($a, $b) {
-        return $b['nilai'] <=> $a['nilai'];
-    });
+        usort($ranking_spk, function ($a, $b) {
+            return $b['nilai'] <=> $a['nilai'];
+        });
 
-    $label_terlaris = [];
-    $data_terlaris = [];
-    
-    // Ambil maksimal 4 destinasi terbaik dari hasil SPK
-    $top_4 = array_slice($ranking_spk, 0, 4);
-    
-    foreach($top_4 as $top) {
-        $label_terlaris[] = $top['nama'];
-        $data_terlaris[] = $destinasi[$top['nama']]['pesanan'] ?? 0; 
+        $top_4 = array_slice($ranking_spk, 0, 4);
+        foreach ($top_4 as $top) {
+            $label_terlaris[] = $top['nama'];
+            $data_terlaris[] =
+                $destinasi[$top['nama']]['pesanan'] ?? 0;
+        }
     }
 
     return view('dashboard', compact(
-        'total_users', 'pengunjung_hari_ini', 'total_paket', 'total_order', 
-        'data_bulanan', 'ranking_spk', 'label_terlaris', 'data_terlaris'
+        'total_users', 'pengunjung_hari_ini','total_paket','total_order',
+        'data_bulanan','ranking_spk','label_terlaris','data_terlaris'
     ));
-}})->middleware('auth');
+
+})->middleware('auth');
 
 Route::get('/spk-smart', function () {
     $destinasi = [
@@ -203,5 +206,19 @@ Route::post('/spk-smart', function (Request $request) {
     return view('spk-smart', compact('destinasi', 'bobot', 'utility', 'ranking_spk'));
 });
 
-Route::get('/paket/{id}', [PaketController::class, 'detail'])
-    ->name('paket.detail');
+Route::middleware('auth')->group(function(){
+    Route::get('/detail/{id}', [PaketController::class, 'detail'])->name('detail');
+    Route::post('/pesan', [PaketController::class, 'pesan'])->name('pesan');
+    Route::get('/konfirmasi/{id}', [PaketController::class, 'konfirmasi'])->name('konfirmasi');
+    Route::post('/upload-bukti/{id}', [PaketController::class, 'uploadBukti'])->name('upload.bukti');
+});
+
+Route::group(['middleware' => ['auth', 'check_role:admin,staff']], function(){
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/admin/pesanan', [DashboardController::class, 'pesanan']);
+
+});
+
+Route::post('/tes', function(){
+    return 'berhasil';
+});
