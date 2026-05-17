@@ -97,37 +97,45 @@
                 transform: translateY(0);
             }
         }
+            .paket-container{
+                overflow: hidden;
+            }
 
-        .tour-card {
-            overflow: hidden;
-            position: relative;
-            transition: 0.3s;
-            background: #ffffff;
-        }
+            .paketSwiper{
+                width: 100%;
+                padding: 20px 0 60px;
+            }
 
-        .card-detail {
-            position: absolute;
-            bottom: -200px;
-            left: 0;
-            width: 100%;
-            background: white;
-            padding: 15px;
-            transition: 0.4s;
-            min-height: 150px;
-        }
-        .card-img-top {
-            width: 100%;
-            height: 220px;      /* supaya tinggi nya sama */
-            object-fit: cover;  /* biar page paket wisata ga gepeng */
-        }
+            .paketSwiper .swiper-wrapper{
+                align-items: stretch;
+            }
 
-        .tour-card:hover .card-detail {
-            bottom: 0;
-        }
+            .paketSwiper .swiper-slide{
+                display: flex;
+                justify-content: center;
+                height: auto;
+            }
 
-        .tour-card:hover {
-            transform: translateY(-10px);
-        }
+            /* CARD */
+            .paket-card{
+                width: 100%;
+                max-width: 280px;
+                height: 420px;
+                border-radius: 24px;
+                overflow: hidden;
+                position: relative;
+                margin: 0;
+            }
+
+            /* RESPONSIVE */
+            @media(max-width:768px){
+
+                .paket-card{
+                    max-width: 240px;
+                    height: 360px;
+                }
+
+            }
 
         html { scroll-behavior: smooth; }
 
@@ -197,12 +205,6 @@
             margin-bottom: 15px;
         }
 
-        section p {
-            font-size: 14px;
-            font-weight: bold;
-            color: #f0c346;
-        }
-
         section i {
             margin-right: 8px;
             color: orange;
@@ -224,7 +226,6 @@
 
         .contact-section::before {
             content: "";
-            display: block;
             width: 80px;
             height: 4px;
             background: orange;
@@ -251,57 +252,231 @@
             border-radius: 50%;
         }
 
-        /* CONTAINER SWIPER */
-        .swiper {
+        /* =========================
+             PROFILE DROPDOWN
+        ========================= */
+        .profile-btn{
+            border-radius: 50px;
+            padding: 8px 18px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .profile-btn:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .profile-dropdown .dropdown-menu{
+            border-radius: 18px;
+            padding: 10px;
+            animation: dropdownFade 0.25s ease;
+            min-width: 220px;
+        }
+
+        .profile-dropdown .dropdown-item{
+            border-radius: 12px;
+            padding: 10px 14px;
+            transition: 0.25s;
+        }
+
+        .profile-dropdown .dropdown-item:hover{
+            background: #f5f7fb;
+            transform: translateX(5px);
+        }
+
+        @keyframes dropdownFade{
+            from{
+                opacity:0;
+                transform: translateY(10px);
+            }
+
+            to{
+                opacity:1;
+                transform: translateY(0);
+            }
+        }
+
+      /* =========================
+        PAKET WISATA MODERN CARD
+        ========================= */
+
+        .paket-section{
+            padding: 70px 0;
+            background: #f5f7fb;
+            overflow: hidden;
+        }
+
+        .paket-container{
             width: 100%;
-            padding: 50px 0;
+            max-width: 100%;
+            padding: 0 !important;
+            overflow: hidden;
+        }
+
+        /* SWIPER */
+        .paketSwiper{
+            width: 100%;
             overflow: visible;
-            cursor: default;
+            padding: 20px 20px 60px;
         }
 
-        /* WRAPPER */
-        .swiper-wrapper {
+        .paketSwiper .swiper-wrapper{
+            align-items: center;
+        }
+
+        .paketSwiper .swiper-slide{
             display: flex;
-            align-items: stretch;
+            justify-content: center;
         }
 
-        /* SLIDE */
-        .mySwiper .swiper-slide {
-            width: 300px;
-            transition: all 0.4s ease;
-            transform: scale(0.8);
-            opacity: 1;
-            cursor: pointer;
+        /* CARD */
+        .paket-card{
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+            height: 420px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #000;
+
+            transition: 0.35s ease;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.18),
+                0 20px 60px rgba(0,0,0,0.12);
         }
 
-        /* HOVER EFFECT */
-        .swiper-slide:hover {
-            transform: scale(0.9);
+        .paket-card:hover{
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 20px 40px rgba(0,0,0,0.25),
+                0 30px 80px rgba(0,0,0,0.18);
         }
 
-        /* SLIDE AKTIF (TENGAH) */
-        .mySwiper .swiper-slide-active {
-            transform: scale(1);
-            opacity: 1;
+        .paket-card::after{
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            box-shadow: inset 0 0 0 1px rgba(235, 175, 46, 0.08);
+            pointer-events: none;
+        }
+
+        /* IMAGE */
+        .paket-image{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .paket-card:hover .paket-image{
+            transform: scale(1.08);
+        }
+
+        /* OVERLAY */
+        .paket-overlay{
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.85) 15%,
+                rgba(0,0,0,0.3) 55%,
+                rgba(0,0,0,0.1) 100%
+            );
+        }
+
+        /* CONTENT */
+        .paket-content{
+            position: absolute;
+            bottom: 22px;
+            left: 22px;
+            right: 22px;
             z-index: 2;
+            color: white;
         }
 
-        /* NAVIGATION BUTTON */
+        /* TITLE */
+        .paket-title{
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 18px;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            display: -webkit-box;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /* BUTTON */
+        .btn-paket{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            width: 150px;
+            height: 42px;
+
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff9f2f, #ff7b00);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+        .btn-paket:hover{
+            background: linear-gradient(135deg, #ffb347, #ff8800);
+            color: white;
+            transform: scale(1.04);
+        }
+
+        .btn-paket i{
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+            opacity: 1;
+            transition: 0.3s;
+        }
+
+        /* SWIPER BUTTON */
         .swiper-button-next,
-        .swiper-button-prev {
-            color: rgb(255, 238, 0) ;
-            z-index: 10;
-            top: 50%;
-            transform: translateY(-50%);
+        .swiper-button-prev{
+            color: #ff9900 !important;
+            transform: scale(0.8);
         }
 
-        /* POSISI KELUAR FRAME */
-        .swiper-button-next {
-            right: -25px;
+        .swiper-button-next:after,
+        .swiper-button-prev:after{
+            font-size: 28px !important;
         }
 
-        .swiper-button-prev {
-            left: -25px;
+        /* RESPONSIVE */
+        @media(max-width:768px){
+
+            .paket-card{
+                max-width: 240px;
+                height: 360px;
+            }
+
+            .paket-title{
+                font-size: 22px;
+            }
+
+            .btn-paket{
+                width: 135px;
+                height: 40px;
+                font-size: 14px;
+            }
         }
 
         .newsletter-section {

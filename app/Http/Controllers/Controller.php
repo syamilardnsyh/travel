@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\PaketWisata;
 use App\Models\Pesanan;
 
-abstract class Controller
+class Controller
 {
    
 public function index   ()
@@ -22,12 +22,34 @@ public function konfirmasi(int $id)
 }
 
 public function verifikasi(int $id)
-{
-    $pesanan = Pesanan::findOrFail($id);
-    $pesanan->update([
-        'status' => 'dibayar'
-    ]);
+    {
+        $pesanan = Pesanan::findOrFail($id);
+        $pesanan->status = 'pending';
+        $pesanan->save();
+        return back();
+    }
 
-    return back();
-}
+    // admin konfirmasi
+    public function dikonfirmasi(int $id)
+    {
+        $pesanan = Pesanan::findOrFail($id);
+        $pesanan->status = 'dikonfirmasi';
+        $pesanan->save();
+        return back()->with(
+            'success',
+            'Pesanan berhasil dikonfirmasi'
+        );
+    }
+
+    // admin tolak
+    public function tolak(int $id)
+    {
+        $pesanan = Pesanan::findOrFail($id);
+        $pesanan->status = 'ditolak';
+        $pesanan->save();
+        return back()->with(
+            'success',
+            'Pesanan berhasil ditolak'
+        );
+    }
 }

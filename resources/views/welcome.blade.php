@@ -51,15 +51,58 @@
                         <i class="bi bi-search"></i>
                     </span>
                 </div>
-
                 @auth
-                <span class="text-white me-3">Halo, {{Auth::user()->name }}!</span>
                 @if(Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
-                    <a href="/dashboard" class="btn btn-success">Dashboard</a>
+                    <a href="/dashboard" class="btn btn-success">
+                        Dashboard
+                    </a>
+
                 @else
-                    <a href="/welcome" class="btn btn-success">Profil</a>
+                <div class="dropdown profile-dropdown">
+                    <button class="btn btn-light dropdown-toggle profile-btn"
+                            data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle me-1"></i>
+                        {{ Auth::user()->name }}
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('profile') }}">
+                                <i class="bi bi-person-circle me-2"></i>
+                                Profil Saya
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ route('riwayat-pesanan') }}">
+                                <i class="bi bi-receipt me-2"></i>
+                                Riwayat Pesanan
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ route('pembayaran.saya') }}">
+                                <i class="bi bi-wallet2 me-2"></i>
+                                Pembayaran
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ route('bantuan') }}">
+                                <i class="bi bi-headset me-2"></i>
+                                Bantuan
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="/logout">
+                                <i class="bi bi-box-arrow-right me-2"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 @endif
-                    <a href="/logout" class="btn btn-success">Logout</a>
                 @endauth
 
                 @guest
@@ -106,13 +149,13 @@
 
 <!-- PAKET WISATA -->
 <section id="paket" class="py-5 paket-section">
-    <div class="container-fluid px-4 px-lg-5">
+    <div class="container-fluid paket-container px-0">
 
         <!-- HEADER -->
         <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
             <div>
                 <h2 class="fw-bold paket-title">
-                    Paket Wisata Populer
+                    Mau wisata kemana hari ini?
                 </h2>
 
                 <p class="text-muted mb-0">
@@ -129,89 +172,38 @@
         <div class="swiper paketSwiper">
             <div class="swiper-wrapper">
                 @foreach ($semua_paket as $paket)
-                <div class="swiper-slide">
-                    <div class="card paket-card border-0 shadow-sm">
+               <div class="swiper-slide">
+                        <div class="paket-card">
 
-                        <!-- IMAGE -->
-                        <div class="paket-image-wrapper">
-                            <img
+                            <!-- IMAGE -->
+                            <img 
                                 src="{{ asset('images/paket/' . $paket->gambar_paket) }}"
                                 class="paket-image"
                                 alt="{{ $paket->nama_paket }}">
 
-                            <!-- BADGE -->
-                            <div class="paket-badge">
-                                POPULER
-                            </div>
+                            <!-- OVERLAY -->
+                            <div class="paket-overlay"></div>
 
-                        </div>
-
-                        <!-- BODY -->
-                        <div class="card-body">
-
-                            <!-- DESTINASI -->
-                            <small class="text-primary fw-semibold">
-                                <i class="bi bi-geo-alt-fill"></i>
-                                {{ $paket->destinasi }}
-                            </small>
-
-                            <!-- TITLE -->
-                            <h5 class="fw-bold mt-2 paket-name">
-                                {{ $paket->nama_paket }}
-                            </h5>
-
-                            <!-- DURASI -->
-                            <div class="d-flex align-items-center text-muted small mb-3">
-                                <i class="bi bi-clock me-2"></i>
-                                {{ $paket->durasi }}
-                            </div>
-
-                            <!-- DESKRIPSI -->
-                            <p class="text-muted paket-desc">
-                                {{ Str::limit($paket->deskripsi, 90) }}
-                            </p>
-
-                            <!-- FASILITAS -->
-                            <div class="d-flex gap-2 flex-wrap mb-3">
-                                <span class="fitur-item">
-                                    Hotel
-                                </span>
-                                <span class="fitur-item">
-                                    Transport
-                                </span>
-                                <span class="fitur-item">
-                                    Tour Guide
-                                </span>
-                            </div>
-                            <hr>
-
-                            <!-- FOOTER -->
-                            <div class="d-flex justify-content-between align-items-center">
-
-                                <div>
-                                    <small class="text-muted">
-                                        Mulai dari
-                                    </small>
-
-                                    <h5 class="fw-bold text-success mb-0">
-                                        Rp {{ number_format($paket->harga,0,',','.') }}
-                                    </h5>
-                                </div>
-
+                            <!-- CONTENT -->
+                            <div class="paket-content">
+                                <h3 class="paket-title">
+                                    {{ $paket->nama_paket }}
+                                </h3>
                                 <a href="{{ route('detail', $paket->id) }}"
-                                   class="btn btn-primary rounded-pill px-4">
-                                   Detail
+                                class="btn-paket">  
+                                    Lihat paket
+                                    <i class="bi bi-chevron-right"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
 
             <!-- NAVIGATION -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
 
         </div>
     </div>
@@ -426,6 +418,7 @@
                         <div class="stars">★★★★★</div>
                         <p>"Website sangat mudah digunakan, pelayanan prima!"</p>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -575,24 +568,50 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-var testimonialSwiper = new Swiper(".testimonialSwiper", {
-    slidesPerView: 3,
-    spaceBetween: 30,
+var paketSwiper = new Swiper(".paketSwiper", {
+
     loop: true,
-    initialSlide: 1,
-    centeredSlides: true,
+    centeredSlides: false,
+    grabCursor: true,
+
+    slidesPerView: 1,
+    spaceBetween: 25,
+
     speed: 1000,
 
-    // supaya bisa drag manual
     autoplay: {
         delay: 2500,
         disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+    },
+
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
     },
 
     breakpoints: {
-        0: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 }
+
+        576: {
+            slidesPerView: 1.3,
+        },
+
+        768: {
+            slidesPerView: 2,
+        },
+
+        992: {
+            slidesPerView: 3,
+        },
+
+        1200: {
+            slidesPerView: 4,
+        }
     }
 });
 </script>
@@ -621,37 +640,7 @@ function kirimWA() {
     window.open(url, '_blank');
 }
 </script>
-
 <script>
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    spaceBetween: 20,
-    loop: true,
-    centeredSlides: true,
-    initialSlide: 1,
-    speed: 1000,
-
-    // nonaktif autoplay:false kalo mau geser manual
-    autoplay: {
-        delay: 1000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true, 
-    },
-
-        navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-
-    breakpoints: {
-        0: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 }
-    }
-});
-</script>
-<script>
-const swiperEl = document.querySelector(".mySwiper");
 const links = document.querySelectorAll("#navMenuList .nav-link");
 const indicator = document.querySelector(".nav-indicator");
 
@@ -710,13 +699,6 @@ window.addEventListener("load", () => {
     if (active) moveIndicator(active);
 });
 
-swiperEl.addEventListener("mouseenter", () => {
-    swiper.autoplay.stop();
-});
-
-swiperEl.addEventListener("mouseleave", () => {
-    swiper.autoplay.start();
-});
 </script>
 <script>
 AOS.init({

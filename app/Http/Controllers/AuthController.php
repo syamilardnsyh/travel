@@ -46,7 +46,7 @@ class AuthController extends Controller
     }
 
     public function google_callback(){
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        $googleUser = Socialite::driver('google')->user();
         $user = User::whereEmail($googleUser->email)->first();
         if(!$user){
             $user = User::create([
@@ -83,7 +83,6 @@ class AuthController extends Controller
     public function sendResetOtp(Request $request)
     {
         $request->validate(['email' => 'required|email']);
-
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
@@ -110,7 +109,7 @@ class AuthController extends Controller
     }
 
     // Menampilkan halaman Input Password Baru
-    public function showResetForm($unique_id)
+    public function showResetForm(string $unique_id)
     {
         // Cari data verifikasi yang statusnya masih active
         $verify = Verification::where('unique_id', $unique_id)
@@ -124,7 +123,7 @@ class AuthController extends Controller
     }
 
     // Memproses update password baru
-    public function updatePassword(Request $request, $unique_id)
+    public function updatePassword(Request $request, string $unique_id)
     {
         // Validasi wajib isi OTP dan Password konfirmasi
         $request->validate([

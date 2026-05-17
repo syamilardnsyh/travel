@@ -121,7 +121,7 @@
                         <div class="mb-3">
                             <label>Jumlah Peserta</label>
                             <input type="number"
-                                   name="jumlah"
+                                   name="jumlah_orang"
                                    class="form-control"
                                    min="1"
                                    value="1">

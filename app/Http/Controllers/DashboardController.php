@@ -26,17 +26,29 @@ class DashboardController extends Controller
     }
 
     public function pesanan()
-    {
-        $pesanan = Pesanan::with('paket')->latest()->get();
-        return view('admin.pesanan', compact('pesanan'));
-    }
+{
+    $pesanans = Pesanan::with('paket')
+        ->latest()
+        ->get();
 
-    public function verifikasi(int $id)
-    {
-        $pesanan = Pesanan::findOrFail($id);
-        $pesanan->update([
-            'status' => 'dibayar'
-        ]);
-        return back();
-    }
+    return view('admin.pesanan', compact('pesanans'));
+}
+
+public function verifikasi(int $id)
+{
+    $pesanan = Pesanan::findOrFail($id);
+    $pesanan->update([
+        'status' => 'verified'
+    ]);
+    return back()->with('success', 'Pembayaran berhasil diverifikasi');
+}
+
+public function tolak(int $id)
+{
+    $pesanan = Pesanan::findOrFail($id);
+    $pesanan->update([
+        'status' => 'ditolak'
+    ]);
+    return back()->with('success', 'Pembayaran ditolak');
+}
 }

@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\PaketController;
+use App\Http\Controllers\PesananController;
+use App\Http\Controllers\UserController;
 use App\Models\Visitor;
 use App\Models\PaketWisata;
 use App\Models\Pesanan;
@@ -216,9 +218,16 @@ Route::middleware('auth')->group(function(){
 Route::group(['middleware' => ['auth', 'check_role:admin,staff']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/admin/pesanan', [DashboardController::class, 'pesanan']);
-
+    Route::post('/admin/pesanan/{id}/verifikasi', [DashboardController::class, 'verifikasi']);
+    Route::post('/admin/pesanan/{id}/tolak', [DashboardController::class, 'tolak']);
 });
 
 Route::post('/tes', function(){
     return 'berhasil';
 });
+
+Route::get('/profile', [PesananController::class, 'profile']) ->middleware('auth') ->name('profile');
+Route::get('/pembayaran.saya', [PesananController::class, 'pembayaranSaya']) ->middleware('auth') ->name('pembayaran.saya');
+Route::get('/riwayat-pesanan', [PesananController::class, 'riwayatPesanan']) ->middleware('auth') ->name('riwayat-pesanan');
+Route::get('/bantuan', [PesananController::class, 'bantuan']) ->middleware('auth') ->name('bantuan');
+Route::post('/update-profile', [UserController::class, 'updateProfile']);

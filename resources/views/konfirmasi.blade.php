@@ -121,8 +121,12 @@
                     <div class="total-box mb-4">
                         <label class="text-muted">Total Pembayaran</label>
 
+                        @php
+                            $totalBayar = $pesanan->jumlah_orang * $pesanan->paket->harga;
+                        @endphp
+
                         <h1 class="fw-bold text-primary">
-                            Rp {{ number_format($pesanan->harga,0,',','.') }}
+                            Rp {{ number_format($totalBayar,0,',','.') }}
                         </h1>
                     </div>
 
