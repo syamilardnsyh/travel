@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\PaketWisata;
 use App\Models\Pesanan;
 
-class Controller
+abstract class Controller
 {
    
 public function index   ()
@@ -17,14 +17,14 @@ public function index   ()
 
 public function konfirmasi(int $id)
 {
-    $pesanan = Pesanan::findOrFail($id);
+    $pesanan = Pesanan::with('paket')->findOrFail($id);
     return view('konfirmasi', compact('pesanan'));
 }
 
 public function verifikasi(int $id)
     {
         $pesanan = Pesanan::findOrFail($id);
-        $pesanan->status = 'pending';
+        $pesanan->status = 'menunggu_konfirmasi';
         $pesanan->save();
         return back();
     }

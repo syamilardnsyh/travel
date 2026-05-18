@@ -23,13 +23,15 @@ class PesananController extends Controller
         }
 
     public function pembayaranSaya()
-        {
-            $pesanan = Pesanan::where('user_id', Auth::id())
-                ->latest()
-                ->get();
-            return view('costumer.pembayaran', compact('pesanan'));
-        }
-        public function bantuan()
+    {
+        $pesanans = Pesanan::with('paket')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->get();
+        return view('costumer.pembayaran', compact('pesanans'));
+    }
+
+    public function bantuan()
         {
             return view('bantuan');
         }   

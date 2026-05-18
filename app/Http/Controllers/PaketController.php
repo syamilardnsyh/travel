@@ -39,9 +39,10 @@ public function konfirmasi(int $id)
     $pesanan = Pesanan::findOrFail($id);
     return view('konfirmasi', compact('pesanan'));
     }
+
 public function uploadBukti(Request $request, int $id)
-{
-    $pesanan = Pesanan::find($id);
+    {
+    $pesanan = Pesanan::findOrFail($id);
     if($request->hasFile('bukti_pembayaran')){
         $file = $request->file('bukti_pembayaran');
         $namaFile = time().'.'.$file->getClientOriginalExtension();

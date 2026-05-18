@@ -230,4 +230,4 @@ Route::get('/profile', [PesananController::class, 'profile']) ->middleware('auth
 Route::get('/pembayaran.saya', [PesananController::class, 'pembayaranSaya']) ->middleware('auth') ->name('pembayaran.saya');
 Route::get('/riwayat-pesanan', [PesananController::class, 'riwayatPesanan']) ->middleware('auth') ->name('riwayat-pesanan');
 Route::get('/bantuan', [PesananController::class, 'bantuan']) ->middleware('auth') ->name('bantuan');
-Route::post('/update-profile', [UserController::class, 'updateProfile']);
+Route::post('/update-profile/{id}', [UserController::class, 'updateProfile']);

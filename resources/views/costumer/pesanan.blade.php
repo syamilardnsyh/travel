@@ -169,49 +169,46 @@
             <!-- STATUS -->
             <div class="col-md-3 text-center mt-4 mt-md-0">
                 @if($item->status == 'pending')
-    <div class="status pending">
-        ⏳ Menunggu Verifikasi Admin
-    </div>
-@elseif($item->status == 'dikonfirmasi')
-    <div class="status success">
-        ✅ Pesanan Dikonfirmasi
-    </div>
-@elseif($item->status == 'ditolak')
-    <div class="status danger">
-        ❌ Pesanan Ditolak
-    </div>
-@else
-    <div class="status upload">
-        📄 Belum Upload Bukti
-    </div>
-@endif
+                <div class="status pending">
+                    ⏳ Menunggu Verifikasi Admin
+                </div>
+            @elseif($item->status == 'dikonfirmasi')
+                <div class="status success">
+                    ✅ Pesanan Dikonfirmasi
+                </div>
+            @elseif($item->status == 'ditolak')
+                <div class="status danger">
+                    ❌ Pesanan Ditolak
+                </div>
+            @else
+                <div class="status upload">
+                    📄 Belum Upload Bukti
+                </div>
+            @endif
+                        </div>
+                        <div>
+                    <a href="/konfirmasi/{{ $item->id }}"
+                    class="btn btn-primary btn-detail">
+                        Detail Pesanan
+                    </a>
+                </div>
+                    </div>
+                </div>
+                @empty
+                <div class="empty-box">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7486/7486740.png">
+                    <h3 class="fw-bold">
+                        Belum Ada Pesanan
+                    </h3>
+                    <p class="text-muted">
+                        Yuk mulai booking perjalanan impianmu sekarang.
+                    </p>
+                    <a href="/welcome" class="btn btn-primary px-4 py-2 rounded-pill">
+                        Jelajahi Paket Wisata
+                    </a>
+                </div>
             </div>
-            <div>
-
-        <a href="/konfirmasi/{{ $item->id }}"
-           class="btn btn-primary btn-detail">
-
-            Detail Pesanan
-
-        </a>
-
+        @endforelse
     </div>
-        </div>
-    </div>
-    @empty
-    <div class="empty-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486740.png">
-        <h3 class="fw-bold">
-            Belum Ada Pesanan
-        </h3>
-        <p class="text-muted">
-            Yuk mulai booking perjalanan impianmu sekarang.
-        </p>
-        <a href="/welcome" class="btn btn-primary px-4 py-2 rounded-pill">
-            Jelajahi Paket Wisata
-        </a>
-    </div>
-    @endforelse
-</div>
 </body>
 </html>

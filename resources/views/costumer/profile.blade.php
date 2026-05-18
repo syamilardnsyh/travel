@@ -205,7 +205,7 @@ body{
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="/pembayaran"
+                <a href="{{ route('pembayaran.saya', $pesanan->id) }}"
                 class="menu-card">
                     <div class="menu-icon">
                         <i class="bi bi-credit-card"></i>
