@@ -133,6 +133,7 @@ body{
                 src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=0D6EFD&color=fff&size=256"
                 class="profile-img">
             </div>
+            
             <div class="col-lg-6 mt-4 mt-lg-0">
                 <h2 class="fw-bold">
                     {{ Auth::user()->name }}
@@ -152,6 +153,7 @@ body{
                     <i class="bi bi-pencil"></i>
                     Edit Profile
                 </button>
+                <a href="/welcome" class="btn btn-success">Home</a>
             </div>
         </div>
 
@@ -205,19 +207,20 @@ body{
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="{{ route('pembayaran.saya', $pesanan->id) }}"
-                class="menu-card">
-                    <div class="menu-icon">
-                        <i class="bi bi-credit-card"></i>
-                    </div>
-                    <h5 class="fw-bold">
-                        Pembayaran
-                    </h5>
-                    <p class="text-muted mb-0">
-                        Kelola pembayaran dan tagihan
-                    </p>
+                @if($pesanan)
+                <a href="{{ route('pembayaran.saya', $pesanan->user_id) }}" class="menu-card">
+                    @else
+                    <a href="#" onclick="alert('Anda belum memiliki pesanan atau tagihan aktif.'); return false;" class="menu-card">
+                @endif
+                
+                <div class="menu-icon">
+                    <i class="bi bi-credit-card"></i>
+                </div>
+                <h5 class="fw-bold">Pembayaran</h5>
+                <p class="text-muted mb-0">Kelola pembayaran dan tagihan</p>
                 </a>
             </div>
+
             <div class="col-md-4">
                 <a href="/bantuan"
                 class="menu-card">

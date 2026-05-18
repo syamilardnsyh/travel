@@ -176,22 +176,40 @@
                                    required>
                         </div>
 
-                        <button type="submit"
-                                class="btn btn-primary btn-upload w-100">
+                        <button type="submit" class="btn btn-primary btn-upload w-100">
+    Upload Bukti Pembayaran
+</button>
 
-                            Upload Bukti Pembayaran
-
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
+@if(session('success'))
+    <div class="alert alert-success mt-4 text-center shadow-sm">
+        <i class="bi bi-check-circle-fill fs-4 text-success"></i><br>
+        <strong>{{ session('success') }}</strong><br>
+        Anda akan dialihkan ke halaman Utama dalam <span id="waktu-mundur" class="fw-bold text-danger">10</span> detik...
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let waktu = 10; // 10 detik
+            let elemenWaktu = document.getElementById('waktu-mundur');
+
+            let hitungMundur = setInterval(function() {
+                waktu--;
+                elemenWaktu.innerHTML = waktu;
+
+                if (waktu <= 0) {
+                    clearInterval(hitungMundur);   
+                    // Halaman Home
+                    window.location.href = '/welcome'; 
+                }
+            }, 1000);
+        });
+    </script>
+    @endif
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

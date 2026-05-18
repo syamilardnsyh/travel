@@ -66,7 +66,7 @@
 
                     <ul class="dropdown-menu dropdown-menu-end shadow border-0">
                         <li>
-                            <a class="dropdown-item" href="{{ route('profile') }}">
+                            <a class="dropdown-item" href="/profile">
                                 <i class="bi bi-person-circle me-2"></i>
                                 Profil Saya
                             </a>
