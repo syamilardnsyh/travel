@@ -91,13 +91,19 @@
             </a>
           </li>
 
-          <li class="nav-item mt-3">
-            <a href="/logout" class="nav-link text-danger">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>Logout</p>
-            </a>
-          </li>
-          
+          <li class="nav-item">
+            <a href="/admin/pesanan" class="nav-link">
+            <i class="nav-icon fas fa-shopping-cart"></i>
+            <p>Data Pesanan</p>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/logout" class="nav-link text-danger">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>Logout</p>
+          </a>
+    
         </ul>
       </nav>
       </div>
