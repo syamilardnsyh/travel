@@ -53,9 +53,8 @@
                 </div>
                 @auth
                 @if(Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
-                    <a href="/dashboard" class="btn btn-success">
-                        Dashboard
-                    </a>
+                    <a href="/dashboard" class="btn btn-success">Dashboard</a>
+                    <a href="/logout" class="btn btn-success">Logout</a>
 
                 @else
                 <div class="dropdown profile-dropdown">
