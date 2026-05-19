@@ -18,7 +18,7 @@ body{
     height: 280px;
     background:
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+    url('https://i1-e.pinimg.com/1200x/c9/42/d7/c942d777898a7c6881c2a296a00ec3d0.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 0 0 40px 40px;
@@ -153,7 +153,7 @@ body{
                     <i class="bi bi-pencil"></i>
                     Edit Profile
                 </button>
-                <a href="/welcome" class="btn btn-success">Home</a>
+                <a href="/welcome" class="btn btn-primary">Home</a>
             </div>
         </div>
 
@@ -193,7 +193,7 @@ body{
         <!-- MENU -->
         <div class="row g-4 mt-4">
             <div class="col-md-4">
-                <a href="/pesanan"
+                <a href="/riwayat-pesanan"
                 class="menu-card">
                     <div class="menu-icon">
                         <i class="bi bi-clock-history"></i>

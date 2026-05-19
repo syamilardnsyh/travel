@@ -26,7 +26,7 @@ body{
 .payment-header{
     background:
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
-    url('/public/admin/dist/img/foto.jpg');
+    url('https://i1-e.pinimg.com/1200x/c9/42/d7/c942d777898a7c6881c2a296a00ec3d0.jpg');
 
     background-size: cover;
     background-position: center;

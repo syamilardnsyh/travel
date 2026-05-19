@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navMenu">
             <div class="ms-auto d-flex align-items-center">
 
-                <ul class="navbar-nav me-3">
+                <ul class="navbar-nav me-3" id="navMenuList">
                     <li class="nav-item"><a class="nav-link" href="/welcome">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/welcome#paket">Paket</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/tentang">Tentang</a></li>

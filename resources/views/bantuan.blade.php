@@ -83,6 +83,7 @@
                 <div class="icon-help">
                     📦
                 </div>
+                <a href="/riwayat-pesanan" class="stretched-link"></a>
                 <h5 class="fw-bold">
                     Status Pesanan
                 </h5>
@@ -98,6 +99,7 @@
                 <div class="icon-help">
                     💳
                 </div>
+                <a href="/pembayaran.saya" class="stretched-link"></a>
                 <h5 class="fw-bold">
                     Pembayaran
                 </h5>
@@ -113,6 +115,9 @@
                 <div class="icon-help">
                     ☎️
                 </div>
+                <a href="https://wa.me/6285882418210"
+                   target="_blank"
+                   class="stretched-link"></a>
                 <h5 class="fw-bold">
                     Hubungi Admin
                 </h5>

@@ -169,29 +169,30 @@
             <!-- STATUS -->
             <div class="col-md-3 text-center mt-4 mt-md-0">
                 @if($item->status == 'pending')
-                <div class="status pending">
-                    ⏳ Menunggu Verifikasi Admin
+                <div class="status-card pending">
+                    ⏳ Pending
                 </div>
-            @elseif($item->status == 'dikonfirmasi')
-                <div class="status success">
+            @elseif($item->status == 'menunggu_verifikasi')
+                <div class="status-card waiting">
+                    🕒 Menunggu Verifikasi
+                <p>Admin sedang memeriksa pembayaran</p>
+                </div>
+            @elseif($item->status == 'verified' || $item->status == 'dikonfirmasi')
+                <div class="status-card success">
                     ✅ Pesanan Dikonfirmasi
+                <p>Pesanan telah diverifikasi admin</p>
                 </div>
             @elseif($item->status == 'ditolak')
-                <div class="status danger">
+                <div class="status-card rejected">
                     ❌ Pesanan Ditolak
                 </div>
             @else
-                <div class="status upload">
-                    📄 Belum Upload Bukti
+                <div class="status-card pending">
+                    <i class="bi bi-question-circle"></i>
+                    <h6>Status Tidak Diketahui</h6>
                 </div>
             @endif
                         </div>
-                        <div>
-                    <a href="/konfirmasi/{{ $item->id }}"
-                    class="btn btn-primary btn-detail">
-                        Detail Pesanan
-                    </a>
-                </div>
                     </div>
                 </div>
                 @empty
