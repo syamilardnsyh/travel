@@ -53,9 +53,8 @@
                 </div>
                 @auth
                 @if(Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
-                    <a href="/dashboard" class="btn btn-success">
-                        Dashboard
-                    </a>
+                    <a href="/dashboard" class="btn btn-success">Dashboard</a>
+                    <a href="/logout" class="btn btn-success">Logout</a>
 
                 @else
                 <div class="dropdown profile-dropdown">
@@ -67,7 +66,7 @@
 
                     <ul class="dropdown-menu dropdown-menu-end shadow border-0">
                         <li>
-                            <a class="dropdown-item" href="{{ route('profile') }}">
+                            <a class="dropdown-item" href="/profile">
                                 <i class="bi bi-person-circle me-2"></i>
                                 Profil Saya
                             </a>

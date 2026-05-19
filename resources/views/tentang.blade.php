@@ -43,10 +43,63 @@
                 </ul>
                     <span class="nav-indicator"></span>
 
+                <div class="input-group me-3" style="width: 200px;">
+                    <input type="text" class="form-control" placeholder="Cari...">
+                    <span class="input-group-text bg-white">
+                        <i class="bi bi-search"></i>
+                    </span>
+                </div>
                 @auth
-                <span class="text-white me-3">Halo, {{ Auth::user()->name }}!</span>
-                    <a href="/welcome" class="btn btn-success">Dashboard</a>
+                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                    <a href="/dashboard" class="btn btn-success">Dashboard</a>
                     <a href="/logout" class="btn btn-success">Logout</a>
+
+                @else
+                <div class="dropdown profile-dropdown">
+                    <button class="btn btn-light dropdown-toggle profile-btn"
+                            data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle me-1"></i>
+                        {{ Auth::user()->name }}
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                        <li>
+                            <a class="dropdown-item" href="/profile">
+                                <i class="bi bi-person-circle me-2"></i>
+                                Profil Saya
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ route('riwayat-pesanan') }}">
+                                <i class="bi bi-receipt me-2"></i>
+                                Riwayat Pesanan
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ route('pembayaran.saya') }}">
+                                <i class="bi bi-wallet2 me-2"></i>
+                                Pembayaran
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ route('bantuan') }}">
+                                <i class="bi bi-headset me-2"></i>
+                                Bantuan
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="/logout">
+                                <i class="bi bi-box-arrow-right me-2"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                @endif
                 @endauth
 
                 @guest

@@ -257,6 +257,11 @@
     
     $(document).ready(function() {
         
+        $('#calendar').datetimepicker({
+            format: 'L',
+            inline: true
+        });
+
         
         var dataPesanan = {!! json_encode($data_bulanan ?? [0,0,0,0,0,0,0,0,0,0,0,0]) !!};
         var labelTerlaris = {!! json_encode($label_terlaris ?? ['Belum Ada Data']) !!};

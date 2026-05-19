@@ -226,7 +226,12 @@ Route::post('/tes', function(){
     return 'berhasil';
 });
 
-Route::get('/profile', [PesananController::class, 'profile']) ->middleware('auth') ->name('profile');
+Route::get('/profile', function () {
+    $pesanan = Pesanan::where('user_id', auth()->id())->latest()->first();
+
+    return view('costumer.profile', compact('pesanan'));
+    })->middleware('auth')->name('profile');
+
 Route::get('/pembayaran.saya', [PesananController::class, 'pembayaranSaya']) ->middleware('auth') ->name('pembayaran.saya');
 Route::get('/riwayat-pesanan', [PesananController::class, 'riwayatPesanan']) ->middleware('auth') ->name('riwayat-pesanan');
 Route::get('/bantuan', [PesananController::class, 'bantuan']) ->middleware('auth') ->name('bantuan');
