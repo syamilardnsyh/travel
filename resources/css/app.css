@@ -168,37 +168,87 @@
             color: orange;
         }
 
-        .testimonialSwiper {
-            padding: 20px 10px 50px;
+        /* =========================
+                TESTIMONIAL
+        ========================= */
+
+        .testimonial-wrapper{
+            overflow: hidden;
+            padding: 10px 0 40px;
         }
 
-        .testimonialSwiper {
-            position: relative;
-            z-index: 3;
+        .testimonialSwiper{
+            width: 100%;
+            padding: 20px 10px 60px;
         }
 
-        .testimonial-card {
+        .testimonialSwiper .swiper-slide{
+            height: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .testimonial-card{
             background: #fff;
-            padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+
+            width: 100%;
+            max-width: 380px;
+            min-height: 320px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+
             transition: 0.3s;
         }
 
-        .testimonial-card:hover {
-            transform: translateY(-5px);
+        .testimonial-card:hover{
+            transform: translateY(-8px);
         }
 
-        .testimonial-img {
-            width: 70px;
-            height: 70px;
+        .testimonial-img{
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
             border-radius: 50%;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .stars {
-            color: gold;
-            margin: 10px 0;
+        .testimonial-card h5{
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-card small{
+            color: #6b7280;
+        }
+
+        .stars{
+            color: #facc15;
+            margin: 12px 0;
+            font-size: 18px;
+        }
+
+        .testimonial-card p{
+            color: #374151;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px){
+
+            .testimonial-card{
+                max-width: 100%;
+                min-height: auto;
+                padding: 30px 20px;
+            }
+
         }
         
         section h5 {

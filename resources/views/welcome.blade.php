@@ -614,6 +614,33 @@ var paketSwiper = new Swiper(".paketSwiper", {
     }
 });
 </script>
+<script>
+var testimonialSwiper = new Swiper(".testimonialSwiper", {
+
+    loop: true,
+    grabCursor: true,
+    centeredSlides: true,
+
+    slidesPerView: 1,
+    spaceBetween: 30,
+
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+
+    breakpoints: {
+
+        768: {
+            slidesPerView: 2,
+        },
+
+        1200: {
+            slidesPerView: 3,
+        }
+    }
+});
+</script>
 
 <script>
 function bookingWA(namaPaket, harga) {

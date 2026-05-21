@@ -64,8 +64,63 @@
             background: #1ebe5d;
             color: white;
         }
+        /* BACK BUTTON */
+    .back-wrapper{
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        z-index: 999;
+    }
+
+    .back-btn{
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        background: rgba(255,255,255,0.18);
+        backdrop-filter: blur(10px);
+
+        color: white;
+        text-decoration: none;
+
+        padding: 10px 20px;
+        border-radius: 50px;
+
+        font-weight: 600;
+        font-size: 15px;
+
+        border: 1px solid rgba(255,255,255,0.2);
+
+        transition: 0.3s;
+
+        box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .back-btn i{
+        font-size: 24px;
+    }
+
+    .back-btn:hover{
+        background: white;
+        color: #0d6efd;
+
+        transform: translateY(-3px);
+
+        box-shadow:
+        0 15px 30px rgba(0,0,0,0.18);
+    }
     </style>
 </head>
+<!-- BACK BUTTON -->
+<div class="back-wrapper">
+    <a href="/welcome" class="back-btn">
+        <i class="bi bi-arrow-left-short"></i>
+         <- Back
+    </a>
+</div>
+   
+<div class="container-fluid p-0">
 <body>
 
 <div class="help-header text-center">

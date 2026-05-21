@@ -7,119 +7,175 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <style>
+    body{
+        background: #f3f7fd;
+        font-family: 'Poppins', sans-serif;
+    }
 
-body{
-    background: #f3f7fd;
-    font-family: 'Poppins', sans-serif;
-}
+    /* HEADER */
+    .profile-banner{
+        height: 280px;
+        background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('https://i1-e.pinimg.com/1200x/c9/42/d7/c942d777898a7c6881c2a296a00ec3d0.jpg');
+        background-size: cover;
+        background-position: center center;
+        border-radius: 0 0 40px 40px;
+        position: relative;
+    }
 
-/* HEADER */
-.profile-banner{
-    height: 280px;
-    background:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url('https://i1-e.pinimg.com/1200x/c9/42/d7/c942d777898a7c6881c2a296a00ec3d0.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: 0 0 40px 40px;
-    position: relative;
-}
+    /* PROFILE CARD */
+    .profile-card{  
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(12px);
+        border-radius: 30px;
+        box-shadow:
+        0 10px 35px rgba(0,0,0,0.08);
+        margin-top: -100px;
+        position: relative;
+        z-index: 10;
+        overflow: hidden;
+    }
 
-/* PROFILE CARD */
-.profile-card{  
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(12px);
-    border-radius: 30px;
-    box-shadow:
-    0 10px 35px rgba(0,0,0,0.08);
-    margin-top: -100px;
-    position: relative;
-    z-index: 10;
-    overflow: hidden;
-}
+    /* PHOTO */
+    .profile-img{
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid white;
+        box-shadow:
+        0 10px 25px rgba(0,0,0,0.15);
+    }
 
-/* PHOTO */
-.profile-img{
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid white;
-    box-shadow:
-    0 10px 25px rgba(0,0,0,0.15);
-}
+    /* MENU */
+    .menu-card{
+        border-radius: 25px;
+        padding: 25px;
+        background: white;
+        transition: 0.3s;
+        box-shadow:
+        0 5px 18px rgba(0,0,0,0.06);
+        text-decoration: none;
+        color: black;
+        display: block;
+    }
 
-/* MENU */
-.menu-card{
-    border-radius: 25px;
-    padding: 25px;
-    background: white;
-    transition: 0.3s;
-    box-shadow:
-    0 5px 18px rgba(0,0,0,0.06);
-    text-decoration: none;
-    color: black;
-    display: block;
-}
+    .menu-card:hover{
+        transform: translateY(-7px);
+        box-shadow:
+        0 15px 30px rgba(0,0,0,0.12);
+    }
 
-.menu-card:hover{
-    transform: translateY(-7px);
-    box-shadow:
-    0 15px 30px rgba(0,0,0,0.12);
-}
+    .menu-icon{
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+        background: #eef4ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        color: #0d6efd;
+        margin-bottom: 15px;
+    }
 
-.menu-icon{
-    width: 60px;
-    height: 60px;
-    border-radius: 20px;
-    background: #eef4ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    color: #0d6efd;
-    margin-bottom: 15px;
-}
+    /* STATS */
+    .stats-box{
+        background: linear-gradient(135deg,#0d6efd,#2563eb);
+        color: white;
+        border-radius: 25px;
+        padding: 25px;
+        box-shadow:
+        0 10px 30px rgba(13,110,253,0.25);
+    }
 
-/* STATS */
-.stats-box{
-    background: linear-gradient(135deg,#0d6efd,#2563eb);
-    color: white;
-    border-radius: 25px;
-    padding: 25px;
-    box-shadow:
-    0 10px 30px rgba(13,110,253,0.25);
-}
+    .stats-number{
+        font-size: 32px;
+        font-weight: bold;
+    }
 
-.stats-number{
-    font-size: 32px;
-    font-weight: bold;
-}
+    /* BUTTON */
+    .btn-edit{
+        border-radius: 50px;
+        padding: 10px 22px;
+        font-weight: 600;
+    }
 
-/* BUTTON */
-.btn-edit{
-    border-radius: 50px;
-    padding: 10px 22px;
-    font-weight: 600;
-}
+    /* INFO */
+    .info-box{
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
 
-/* INFO */
-.info-box{
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
+        box-shadow:
+        0 5px 15px rgba(0,0,0,0.05);
+    }
 
-    box-shadow:
-    0 5px 15px rgba(0,0,0,0.05);
-}
+    .info-box p{
+        margin-bottom: 10px;
+    }
 
-.info-box p{
-    margin-bottom: 10px;
-}
+    /* BACK BUTTON */
+    .back-wrapper{
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        z-index: 999;
+    }
+
+    .back-btn{
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        background: rgba(255,255,255,0.18);
+        backdrop-filter: blur(10px);
+
+        color: white;
+        text-decoration: none;
+
+        padding: 10px 20px;
+        border-radius: 50px;
+
+        font-weight: 600;
+        font-size: 15px;
+
+        border: 1px solid rgba(255,255,255,0.2);
+
+        transition: 0.3s;
+
+        box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .back-btn i{
+        font-size: 24px;
+    }
+
+    .back-btn:hover{
+        background: white;
+        color: #0d6efd;
+
+        transform: translateY(-3px);
+
+        box-shadow:
+        0 15px 30px rgba(0,0,0,0.18);
+    }
 
 </style>
 </head>
 <body>
+
+<!-- BACK BUTTON -->
+<div class="back-wrapper">
+    <a href="/welcome" class="back-btn">
+        <i class="bi bi-arrow-left-short"></i>
+        Kembali
+    </a>
+</div>
+   
+<div class="container-fluid p-0">
 
 <!-- BANNER -->
 <div class="profile-banner"></div>
@@ -153,7 +209,6 @@ body{
                     <i class="bi bi-pencil"></i>
                     Edit Profile
                 </button>
-                <a href="/welcome" class="btn btn-primary">Home</a>
             </div>
         </div>
 

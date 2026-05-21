@@ -103,9 +103,47 @@
             margin-bottom: 20px;
         }
 
+        /* BACK BUTTON */
+        .back-btn{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            background: white;
+            color: #0d6efd;
+
+            padding: 12px 22px;
+
+            border-radius: 14px;
+            text-decoration: none;
+
+            font-weight: 600;
+
+            box-shadow:
+            0 8px 20px rgba(0,0,0,0.06);
+
+            transition: .3s;
+        }
+
+        .back-btn:hover{
+            transform: translateY(-3px);
+
+            background: #0d6efd;
+            color: white;
+
+            box-shadow:
+            0 12px 25px rgba(13,110,253,0.25);
+        }
+
     </style>
 </head>
 <body>
+    <!-- BACK BUTTON -->
+<div class="container pt-4">
+    <a href="/welcome" class="back-btn">
+        ← Kembali
+    </a>
+</div>
 <div class="container py-5">
 
     <!-- HEADER -->
